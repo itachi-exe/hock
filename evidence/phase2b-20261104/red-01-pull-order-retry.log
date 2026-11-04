@@ -1,0 +1,101 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        6044         413          33        1823        1896
+Swap:           8191        6593        1598
+Compiling 2 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.51s
+Compiler run successful!
+
+Ran 1 test for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[FAIL: EvmError: Revert] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 61369)
+Traces:
+  [9414889] HockPullUpdateTest::setUp()
+    ├─ [0] VM::warp(1000000 [1e6])
+    │   └─ ← [Return]
+    ├─ [364197] → new MockToken@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [364197] → new MockToken@0x2e234DAe75C793f67A35089C9d99245E1C58470b
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [364197] → new MockToken@0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [162292] → new MockFeed@0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9
+    │   └─ ← [Return] 588 bytes of code
+    ├─ [608436] → new MockPyth@0xc7183455a4C133Ae270771860664b6B7ec320bB1
+    │   └─ ← [Return] 3039 bytes of code
+    ├─ [46150] MockPyth::seed(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de, 100000000 [1e8], -8, 1000000 [1e6])
+    │   └─ ← [Stop]
+    ├─ [386260] → new PythFeedAdapter@0xa0Cb889707d426A7A386870A03bc70d1b0697598
+    │   └─ ← [Return] 1926 bytes of code
+    ├─ [1049080] → new MockCL@0x1d1499e622D69689cdf9004d05Ec547d650Ff211
+    │   └─ ← [Return] 4238 bytes of code
+    ├─ [385919] → new MockSwapper@0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+    │   └─ ← [Return] 1369 bytes of code
+    ├─ [2260438] → new HockVault@0x03A6a84cD762D9707A21605b548aaaB891562aAb
+    │   └─ ← [Return] 11167 bytes of code
+    ├─ [786519] → new HockOracle@0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+    │   └─ ← [Return] 3918 bytes of code
+    ├─ [22998] HockVault::setOracle(HockOracle: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF])
+    │   └─ ← [Stop]
+    ├─ [696726] → new UnitMorpho@0x15cF58144EF33af1e14b5208015d11F9143E27b9
+    │   └─ ← [Return] 3480 bytes of code
+    ├─ [1000710] → new HockRouter@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 4430 bytes of code
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [0] VM::deal(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [23084] MockToken::approve(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [23084] MockToken::approve(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [23031] UnitMorpho::setAuthorization(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], true)
+    │   └─ ← [Stop]
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [61369] HockPullUpdateTest::test_routerPullUpdateRunsBeforeStaleValuationAndBorrow()
+    ├─ [0] VM::getBlockTimestamp() [staticcall]
+    │   └─ ← [Return] 1000000 [1e6]
+    ├─ [0] VM::warp(1007200 [1.007e6])
+    │   └─ ← [Return]
+    ├─ [7649] MockFeed::set(100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [0] VM::expectRevert(StalePrice())
+    │   └─ ← [Return]
+    ├─ [14660] HockOracle::fairPrice() [staticcall]
+    │   ├─ [11020] PythFeedAdapter::latest() [staticcall]
+    │   │   ├─ [5874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   └─ ← [Revert] StalePrice()
+    ├─ [392] MockPyth::MARKER() [staticcall]
+    │   └─ ← [Return] 0x6d6f636b206f6e6c790000000000000000000000000000000000000000000000
+    ├─ [0] VM::prank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [347] MockPyth::FEE() [staticcall]
+    │   └─ ← [Return] 7
+    ├─ [43] HockRouter::depositAndBorrow{value: 7}(1000000000000000000 [1e18], 100000000000000000000000 [1e23], 1000000000000000000 [1e18], 50000000000000000000000 [5e22], [0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de0000000000000000000000000000000000000000000000000000000005f5e100fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff800000000000000000000000000000000000000000000000000000000000f5e606d6f636b206f6e6c790000000000000000000000000000000000000000000000])
+    │   └─ ← [Revert] unrecognized function selector 0x6d8dc040 for contract 0x212224D2F2d262cd093eE13240ca4873fcCBbA3C, which has no fallback function.
+    └─ ← [Revert] EvmError: Revert
+
+Backtrace:
+  at HockRouter.depositAndBorrow
+  at HockPullUpdateTest.test_routerPullUpdateRunsBeforeStaleValuationAndBorrow
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 5.93ms (637.07µs CPU time)
+
+Ran 1 test suite in 33.70ms (5.93ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/HockPullUpdate.t.sol:HockPullUpdateTest
+[FAIL: EvmError: Revert] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 61369)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test

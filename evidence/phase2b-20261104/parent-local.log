@@ -1,0 +1,47 @@
+COMMAND: /opt/hermes/.foundry/bin/forge test --no-match-contract .*ForkTest -v
+No files changed, compilation skipped
+
+Ran 7 tests for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[PASS] test_emptyUpdateCannotStrandNativeCurrency() (gas: 24583)
+[PASS] test_futureDatedFeedRevertsBadPrice() (gas: 31370)
+[PASS] test_harvestPullUpdatePrecedesStaleOracleUse() (gas: 969564)
+[PASS] test_oracleUpdateRejectsZeroMusdAtomically() (gas: 139201)
+[PASS] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 733358)
+[PASS] test_routerRejectsMarketWithDifferentOracle() (gas: 56218)
+[PASS] test_updateOverpaymentIsRejectedAtomically() (gas: 46546)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 16.93ms (10.86ms CPU time)
+
+Ran 6 tests for test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[PASS] testFuzz_adapterRejectsShortActualOutput(bool) (runs: 256, μ: 1273288, ~: 1284081)
+[PASS] testFuzz_falseTokenReturnRevertsAtomically(uint8) (runs: 256, μ: 2073474, ~: 2037983)
+[PASS] testFuzz_invalidRouteRejectedBeforePull(bool) (runs: 256, μ: 1041187, ~: 1041169)
+[PASS] testFuzz_swapExecutesConfiguredTickSpacingRoute(bool) (runs: 256, μ: 1258084, ~: 1269607)
+[PASS] testFuzz_swapRequiresPositiveAmountAndMinimum(bool) (runs: 256, μ: 1037417, ~: 1037404)
+[PASS] test_partialInputFillRevertsWithoutStrandingDust() (gas: 1301017)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 228.94ms (536.34ms CPU time)
+
+Ran 19 tests for test/Hock.t.sol:HockTest
+[PASS] testFuzz_keeperCannotDisableEitherMinimum(bool) (runs: 256, μ: 405288, ~: 405276)
+[PASS] testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool) (runs: 256, μ: 4669148, ~: 4682219)
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450275)
+[PASS] test_driftIsCheckedBeforeCallingSwapper() (gas: 502272)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 863755)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589940)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 498278)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518597)
+[PASS] test_onlyKeeperMayChooseHarvestMinima() (gas: 681954)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 567155)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 566075)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505887)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 683054)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498586)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 663012)
+[PASS] test_staleFeed_reverts() (gas: 405780)
+[PASS] test_withdrawReturnsAssets() (gas: 458450)
+[PASS] test_zeroPrice_reverts() (gas: 26219)
+Suite result: ok. 19 passed; 0 failed; 0 skipped; finished in 366.10ms (379.97ms CPU time)
+
+Ran 3 test suites in 368.61ms (611.97ms CPU time): 32 tests passed, 0 failed, 0 skipped (32 total tests)
+
+EXIT: 0

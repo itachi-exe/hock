@@ -1,0 +1,19 @@
+{
+  "scope": [
+    "src/HockOracle.sol",
+    "src/HockRouter.sol",
+    "src/HockVault.sol",
+    "src/Interfaces.sol",
+    "src/adapters/IMezo.sol",
+    "src/adapters/MezoFeeds.sol",
+    "test/Hock.t.sol",
+    "src/adapters/MezoSwapAdapter.sol",
+    "test/HockPullUpdate.t.sol",
+    "test/MezoSwapAdapter.t.sol",
+    "test/MezoSwapFork.t.sol",
+    "test/mocks/MockPyth.sol"
+  ],
+  "static_scan_findings": [],
+  "independent_review": "parent inspected child changes and every affected caller; no reviewer recursion in cron",
+  "integration_gate": "authenticated current Pyth update unavailable; task cannot close"
+}

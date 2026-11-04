@@ -1,0 +1,150 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5880         555          22        1910        2061
+Swap:           8191        6760        1431
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.53s
+Compiler run successful!
+
+Ran 1 test for test/Hock.t.sol:HockTest
+[FAIL: next call did not revert as expected; counterexample: calldata=0xd11253510000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool) (runs: 0, μ: 0, ~: 0)
+Traces:
+  [4774441] HockTest::testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(false)
+    ├─ [308768] → new LyingSwapper@0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+    │   └─ ← [Return] 1537 bytes of code
+    ├─ [2574204] → new HockVault@0x15cF58144EF33af1e14b5208015d11F9143E27b9
+    │   └─ ← [Return] 12734 bytes of code
+    ├─ [990343] → new HockOracle@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 4936 bytes of code
+    ├─ [22976] HockVault::setOracle(HockOracle: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [23084] MockToken::approve(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 1000000000000000000 [1e18])
+    │   └─ ← [Return] true
+    ├─ [23084] MockToken::approve(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 100000000000000000000000 [1e23])
+    │   └─ ← [Return] true
+    ├─ [384317] HockVault::deposit(1000000000000000000 [1e18], 100000000000000000000000 [1e23], 0)
+    │   ├─ [61254] HockOracle::fairSqrtPrice() [staticcall]
+    │   │   ├─ [4643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [4643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [2455] MockCL::spotSqrtPrice() [staticcall]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [24514] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [24514] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [92438] MockCL::mintStaked(1000000000000000000 [1e18], 100000000000000000000000 [1e23])
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 999999999999999999 [9.999e17])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 99999999999999999999595 [9.999e22])
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Return] 1, 999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]
+    │   ├─ [21778] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 1)
+    │   │   └─ ← [Return] true
+    │   ├─ [21778] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 405)
+    │   │   └─ ← [Return] true
+    │   ├─ [5163] HockOracle::valueOf(999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]) [staticcall]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, amount: 199999999999999999899595 [1.999e23])
+    │   ├─ emit Deposit(who: 0x00000000000000000000000000000000000A11cE, a0: 999999999999999999 [9.999e17], a1: 99999999999999999999595 [9.999e22], shares: 199999999999999999899595 [1.999e23])
+    │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [21039] MockToken::mint(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [21039] MockToken::mint(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 1000000000000000000000 [1e21])
+    │   └─ ← [Stop]
+    ├─ [554] MockCL::liq() [staticcall]
+    │   └─ ← [Return] 632455532033675866397 [6.324e20]
+    ├─ [2470] MockCL::lastClaim() [staticcall]
+    │   └─ ← [Return] 1000000 [1e6]
+    ├─ [0] VM::getBlockTimestamp() [staticcall]
+    │   └─ ← [Return] 1000000 [1e6]
+    ├─ [0] VM::warp(1003600 [1.003e6])
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(Slippage())
+    │   └─ ← [Return]
+    ├─ [202860] HockVault::harvest(5000000000000000 [5e15], 600000000000000000000 [6e20], [])
+    │   ├─ [4262] HockOracle::updatePriceFeeds([])
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Stop]
+    │   ├─ [34490] MockCL::getReward(1)
+    │   │   ├─ [23039] MockToken::mint(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 2772000000000000000000 [2.772e21])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000096453a515086d00000
+    │   ├─ [23778] MockToken::transfer(0x0000000000000000000000000000000000007EA5, 277200000000000000000 [2.772e20])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(LyingSwapper: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 2494800000000000000000 [2.494e21])
+    │   │   └─ ← [Return] true
+    │   ├─ [28548] LyingSwapper::swap(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], MockToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 1247400000000000000000 [1.247e21], 5000000000000000 [5e15])
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], LyingSwapper: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 1247400000000000000000 [1.247e21])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [1139] MockToken::mint(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 5000000000000000 [5e15])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 5000000000000000 [5e15]
+    │   ├─ [6823] LyingSwapper::swap(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 1247400000000000000000 [1.247e21], 600000000000000000000 [6e20])
+    │   │   ├─ [2614] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], LyingSwapper: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF], 1247400000000000000000 [1.247e21])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [1139] MockToken::mint(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 599999999999999999999 [5.999e20])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 600000000000000000000 [6e20]
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]) [staticcall]
+    │   │   └─ ← [Return] 1005000000000000000 [1.005e18]
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9]) [staticcall]
+    │   │   └─ ← [Return] 1599999999999999999999 [1.599e21]
+    │   ├─ [1084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1005000000000000000 [1.005e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [1084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1599999999999999999999 [1.599e21])
+    │   │   └─ ← [Return] true
+    │   ├─ [48254] HockOracle::fairSqrtPrice() [staticcall]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [455] MockCL::spotSqrtPrice() [staticcall]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [13693] MockCL::increaseStaked(1, 1005000000000000000 [1.005e18], 1599999999999999999999 [1.599e21])
+    │   │   ├─ [2614] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 15999999999999999 [1.599e16])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [2614] MockToken::transferFrom(HockVault: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1599999999999999999937 [1.599e21])
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Return] 15999999999999999 [1.599e16], 1599999999999999999937 [1.599e21]
+    │   ├─ emit Harvest(reward: 2772000000000000000000 [2.772e21], fee: 277200000000000000000 [2.772e20], compounded: 600005000000000000000 [6e20])
+    │   └─ ← [Return] 2772000000000000000000 [2.772e21]
+    └─ ← [Revert] next call did not revert as expected
+
+Backtrace:
+  at HockTest.testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 32.93ms (28.91ms CPU time)
+
+Ran 1 test suite in 51.81ms (32.93ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/Hock.t.sol:HockTest
+[FAIL: next call did not revert as expected; counterexample: calldata=0xd11253510000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool) (runs: 0, μ: 0, ~: 0)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test
+
+Fuzz seed: 0x1 (use `--fuzz-seed` to reproduce)

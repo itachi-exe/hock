@@ -26,6 +26,8 @@ contract MezoPriceFeedAdapter is IFeed {
 
 interface IPyth {
     function getPriceUnsafe(bytes32 id) external view returns (int64 price, uint64 conf, int32 expo, uint256 publishTime);
+    function getUpdateFee(bytes[] calldata priceUpdate) external view returns (uint256);
+    function updatePriceFeeds(bytes[] calldata priceUpdate) external payable;
 }
 
 /// Any Pyth feed, rescaled to 1e18. Uses getPriceUnsafe on purpose: staleness is HockOracle's job (maxAge),
@@ -34,6 +36,14 @@ contract PythFeedAdapter is IFeed {
     IPyth public immutable pyth;
     bytes32 public immutable id;
     constructor(address _pyth, bytes32 _id) { pyth = IPyth(_pyth); id = _id; }
+
+    error WrongUpdateFee();
+
+    function updatePriceFeeds(bytes[] calldata priceUpdate) external payable {
+        uint256 fee = pyth.getUpdateFee(priceUpdate);
+        if (msg.value != fee) revert WrongUpdateFee();
+        pyth.updatePriceFeeds{value: fee}(priceUpdate);
+    }
 
     function latest() external view returns (uint256 price, uint256 updatedAt) {
         (int64 p,, int32 expo, uint256 t) = pyth.getPriceUnsafe(id);

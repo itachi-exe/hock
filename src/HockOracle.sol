@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-import {IERC20, IFeed, ICL, IOracle} from "./Interfaces.sol";
+import {IERC20, IFeed, IPullFeed, ICL, IOracle} from "./Interfaces.sol";
 import {HockMath} from "./HockMath.sol";
 
 interface IHockVaultView {
@@ -29,10 +29,18 @@ contract HockOracle is IOracle {
         btcUsd = IFeed(_btcUsd); musdUsd = IFeed(_musdUsd); maxAge = _maxAge;
     }
 
+    error UnexpectedValue();
+
+    function updatePriceFeeds(bytes[] calldata priceUpdate) external payable {
+        if (priceUpdate.length != 0) IPullFeed(address(musdUsd)).updatePriceFeeds{value: msg.value}(priceUpdate);
+        else if (msg.value != 0) revert UnexpectedValue();
+        fairPrice();
+    }
+
     function _read(IFeed f) internal view returns (uint256 p) {
         uint256 t;
         (p, t) = f.latest();
-        if (p == 0) revert BadPrice();
+        if (p == 0 || t > block.timestamp) revert BadPrice();
         if (block.timestamp - t > maxAge) revert StalePrice();
     }
 

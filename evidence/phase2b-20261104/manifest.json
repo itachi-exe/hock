@@ -1,0 +1,277 @@
+[
+  {
+    "file": "red-01-pull-order-final.log",
+    "sha256": "d837f97acba6f1ab3dd8c0474881934a60a80ea0670ee6520b2745ccd2183ca2",
+    "bytes": 6293
+  },
+  {
+    "file": "red-01-pull-order-retry.log",
+    "sha256": "9f2141710d29ab2f8181746bcdd4d9ae14a6be1c790b60f9d83245b81cc8faa7",
+    "bytes": 6293
+  },
+  {
+    "file": "red-01-pull-order.log",
+    "sha256": "11e493341971018059ea6c8e35fac6d78cafbacc7fef2fac3c7210f31a4fb9ec",
+    "bytes": 321
+  },
+  {
+    "file": "red-02-exact-fee.log",
+    "sha256": "b3a18fd0bcecc9ddec40be89d9e1839753dd7a902b5fc291772340b7d56d250a",
+    "bytes": 6661
+  },
+  {
+    "file": "red-03-empty-value.log",
+    "sha256": "368e88bc7aea96db2d8165391d66a733667776031b9eb7a94cefd0b4a94294d9",
+    "bytes": 4815
+  },
+  {
+    "file": "red-04-oracle-validation.log",
+    "sha256": "b71efbe7fcc7802c8a773e23134495e33f7936c972999b5705206d1c1919ed4a",
+    "bytes": 6909
+  },
+  {
+    "file": "red-05-future-price.log",
+    "sha256": "012960c9d98a04911150bc6cf573de248c65426aa07aeff29570fd74ebbfca89",
+    "bytes": 5365
+  },
+  {
+    "file": "red-06-keeper-boundary.log",
+    "sha256": "1ae82a775da421298912854b9953b1d5d3b0b028c84a27053c1aaac63fcd261b",
+    "bytes": 11364
+  },
+  {
+    "file": "red-07-harvest-pull-order.log",
+    "sha256": "88dedec1efdebc8ba18bef281ab5e8ae72ad2cc19af5a4e3f2eb5efd73a909f5",
+    "bytes": 17954
+  },
+  {
+    "file": "red-08-positive-minima.log",
+    "sha256": "a9ef30bfe063394f2264ab7c60121080c8bc0fdc5196b79c8086445a7dd1ed3c",
+    "bytes": 10502
+  },
+  {
+    "file": "red-09-actual-receipts.log",
+    "sha256": "a5bba8b83bb52f6adc2cf7e7ae33bbd2efa1432ee0b29a160cfd73e437fddb0c",
+    "bytes": 11650
+  },
+  {
+    "file": "red-10-harvest-drift-order.log",
+    "sha256": "9785f01c89e6a769bf4d7ab52fe8f4fee20a0f64da2b7261a092faf9502fff1a",
+    "bytes": 7673
+  },
+  {
+    "file": "red-11-cl-router-route.log",
+    "sha256": "03ad445fd3c018f38069e890af8a867755dd1b8fe2c7a1e675cf0182e5d94549",
+    "bytes": 1700
+  },
+  {
+    "file": "red-12-adapter-minimum.log",
+    "sha256": "3b0c233af2c26c929bf98d884b1d4052a1f90626ff3c459fd33e4a5f2d391b9e",
+    "bytes": 12521
+  },
+  {
+    "file": "red-13-adapter-route-validation.log",
+    "sha256": "b67cf2c211dd55d9595f93cf0daec9cacfd36c5e072b489d4373c60edc417d84",
+    "bytes": 1325
+  },
+  {
+    "file": "red-14-adapter-positive-minimum.log",
+    "sha256": "5a1dd0f5a99d05a52bd07ef14f624992d44bb04fe67240b035cc517080eac98a",
+    "bytes": 1285
+  },
+  {
+    "file": "red-15-adapter-partial-fill.log",
+    "sha256": "4833c6b209a900f44cd100a18a9077bd13fa0c2cd1c9a1cbc8692d4da6a95107",
+    "bytes": 987
+  },
+  {
+    "file": "red-16-adapter-token-return.log",
+    "sha256": "930cf34ad8b5035d19a30f33a5d892a3c5fb47085f9ce8219b1c010575b94c49",
+    "bytes": 1276
+  },
+  {
+    "file": "red-17-market-oracle.log",
+    "sha256": "b3efd6c0c5fd2088daaba2a538f4b4bbcacc4a775252740fd7e7f35a8edd2446",
+    "bytes": 976
+  },
+  {
+    "file": "green-01-pull-order-fork.log",
+    "sha256": "30b345352f788d2dcfdcb6466f9bf80fe63c3844ea5f10c98a1704f1d5245870",
+    "bytes": 2680
+  },
+  {
+    "file": "green-01-pull-order-local.log",
+    "sha256": "b29f5a7372dc80b57c8c8c5c67994510405d3277d79caf939b48acb903c1868e",
+    "bytes": 1650
+  },
+  {
+    "file": "green-02-exact-fee.log",
+    "sha256": "6a2ef21e42ae65f394b2c5900f68d61baf86aa94b32161902821d9001ca9b9f7",
+    "bytes": 1715
+  },
+  {
+    "file": "green-03-empty-value.log",
+    "sha256": "2fd13fe6eff07812bb5c2c5dbe6966c7ed1c1245a1ed26642ed6ba6e1befe501",
+    "bytes": 1780
+  },
+  {
+    "file": "green-04-oracle-validation.log",
+    "sha256": "f7d15472bab91461b6b61bf8fd5875853b83f5561f38d4c45824f8cd93de90a1",
+    "bytes": 1846
+  },
+  {
+    "file": "green-05-future-price.log",
+    "sha256": "3ab1b581405d6b54fd77af9344d25c9d71cae0155671db90ae5438665a61e9dc",
+    "bytes": 1904
+  },
+  {
+    "file": "green-06-keeper-boundary.log",
+    "sha256": "55844edf9f1fd422dbccd6120c1f6813377002c65c0441dc67d389ee9caebff4",
+    "bytes": 1965
+  },
+  {
+    "file": "green-07-harvest-pull-order.log",
+    "sha256": "118875cce34b1469de129081accca3958c10c7afb20c215a2855993108e6f356",
+    "bytes": 2033
+  },
+  {
+    "file": "green-08-positive-minima.log",
+    "sha256": "143afaac3b39aa368ada879de6a05354161c2c003cdec471d3f2a21ca36e22fa",
+    "bytes": 2127
+  },
+  {
+    "file": "green-09-actual-receipts.log",
+    "sha256": "53304864ec7c26defff4acdbfe2b8a6c9f5f35658cf45285391566d3e147a041",
+    "bytes": 2236
+  },
+  {
+    "file": "green-10-harvest-drift-order.log",
+    "sha256": "5158c374036bc6e9a195a323f5a8e76a9819b16d473c927d106e57cb2fb175f3",
+    "bytes": 2299
+  },
+  {
+    "file": "green-11-cl-router-route.log",
+    "sha256": "bccfc6c9d59007f88d61794d625b73d5537e5d7224595b729dc83e8e754d155e",
+    "bytes": 2551
+  },
+  {
+    "file": "green-12-adapter-minimum.log",
+    "sha256": "cd3c2b2f7d5f64efb6567f2afe12f443d804c2ae5a3deaec7a527dee99c764a3",
+    "bytes": 2643
+  },
+  {
+    "file": "green-13-adapter-route-validation.log",
+    "sha256": "fd6f387c2c94abfcac2269b2a62a34b7e8b111f217cee46573cf5fa64c84ade8",
+    "bytes": 2732
+  },
+  {
+    "file": "green-14-adapter-positive-minimum.log",
+    "sha256": "d9607d8d64cd51f5f4b76406c640c28e0a2f353b17df35745ba762a8419bec3a",
+    "bytes": 2826
+  },
+  {
+    "file": "green-15-adapter-partial-fill.log",
+    "sha256": "0f401d81e3cb6b9e441c008b593a69510e3abaca236bd090fec4eab9ca731183",
+    "bytes": 2899
+  },
+  {
+    "file": "green-16-adapter-token-return.log",
+    "sha256": "8c98c8a1f971acbb4772cbe927a2828bedb1feddab7a09272500b2760c5ad960",
+    "bytes": 2991
+  },
+  {
+    "file": "green-17-market-oracle.log",
+    "sha256": "f932ad930a948b4c05a85bc7f9c56b8a4961094430b1f74d107007ec0e3288d5",
+    "bytes": 3056
+  },
+  {
+    "file": "baseline-local.log",
+    "sha256": "87e2e9c2671030f6d24bd7534659d0200faf12e91eea528d8f81de348e3694e9",
+    "bytes": 1371
+  },
+  {
+    "file": "baseline-fork.log",
+    "sha256": "8827ab49caf26514b5955619ea0333a0d1d02d2529d3d964b55141fe44d7c813",
+    "bytes": 2403
+  },
+  {
+    "file": "parent-local.log",
+    "sha256": "53e21ab1be4577be020d98cce1a37f00c81bc5ca5d3ace4e0433fc1105869bcb",
+    "bytes": 2892
+  },
+  {
+    "file": "parent-real-swap-fork-red.log",
+    "sha256": "31ea87ee504b2d14f0eb6886b4e4b50fbd11c748beba2887ce35f7206e6bdb41",
+    "bytes": 1882
+  },
+  {
+    "file": "parent-full-fork-green.log",
+    "sha256": "2f4df64c7f997afccb067ce8fbb324ac4f0ad21b3516fd405b8b341694306c0d",
+    "bytes": 4627
+  },
+  {
+    "file": "baseline-preservation.json",
+    "sha256": "3d663a7dabb8393949141c33825448fba5ccc43584d32d1b986a25d627ddb6f4",
+    "bytes": 197
+  },
+  {
+    "file": "parent-review.json",
+    "sha256": "b028e82e3a5e2fd30b12fcc82f30e0187a72a8a310781aeab650a5a7138977fa",
+    "bytes": 614
+  },
+  {
+    "file": "tdd-cycle-index.json",
+    "sha256": "b249b5a4510a6a286f1616acef9379f46f144c3329d6857da77e10d33a94618e",
+    "bytes": 57967
+  },
+  {
+    "file": "scope-and-discovery.md",
+    "sha256": "84c9d7e2dc16919d9868ad66324bf12a3114cccf8bc4d00370788f3ade3fed70",
+    "bytes": 3180
+  },
+  {
+    "file": "live-pools.json",
+    "sha256": "eb22aba2640c4ce4d3181fbd3ceadaa9c1afbebe741d48fc5314a077da74efa4",
+    "bytes": 8524
+  },
+  {
+    "file": "swap-pool-balances.json",
+    "sha256": "1b14b1fe9cf6d982f379e7b50423bb922086ba1458ab4b4c9eeb2c58b891bfdf",
+    "bytes": 1152
+  },
+  {
+    "file": "real-pyth-public-calldata-rejection.txt",
+    "sha256": "0e000b74a4fcd013e4f94b561237e0103a6695c49c7055c0e05bc8b5a6fe9d39",
+    "bytes": 146
+  },
+  {
+    "file": "hermes-main.headers",
+    "sha256": "0e4d9dca94ebcab3fc1d1309a7a041acafa5ff4851b31f282e76071639c2a9d5",
+    "bytes": 406
+  },
+  {
+    "file": "hermes-main.response",
+    "sha256": "e9d83f01c9aff03af6380e341aad90a5547d378ef54582383c6c9a35c53181af",
+    "bytes": 12
+  },
+  {
+    "file": "hermes-beta.headers",
+    "sha256": "0cac445318cc81eb58ee5a71103763af8fc415c071a02ebb9da30b08a1dc6d39",
+    "bytes": 406
+  },
+  {
+    "file": "hermes-beta.response",
+    "sha256": "e9d83f01c9aff03af6380e341aad90a5547d378ef54582383c6c9a35c53181af",
+    "bytes": 12
+  },
+  {
+    "file": "benchmarks.headers",
+    "sha256": "04296f9cb3a1fcd2f2e55ffd1dc834ccc2b9ec3ac0af70fa517ecd341b0793a7",
+    "bytes": 406
+  },
+  {
+    "file": "benchmarks.response",
+    "sha256": "e9d83f01c9aff03af6380e341aad90a5547d378ef54582383c6c9a35c53181af",
+    "bytes": 12
+  }
+]

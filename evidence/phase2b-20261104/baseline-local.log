@@ -1,0 +1,24 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5818         236          35        2229        2123
+Swap:           8191        6747        1444
+No files changed, compilation skipped
+
+Ran 15 tests for test/Hock.t.sol:HockTest
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450019)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 796866)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589594)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 632713)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518200)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 566891)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 565893)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505677)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 682731)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498398)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 662703)
+[PASS] test_staleFeed_reverts() (gas: 405600)
+[PASS] test_withdrawReturnsAssets() (gas: 458295)
+[PASS] test_zeroPrice_reverts() (gas: 26124)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 31.05ms (23.80ms CPU time)
+
+Ran 1 test suite in 35.35ms (31.05ms CPU time): 15 tests passed, 0 failed, 0 skipped (15 total tests)

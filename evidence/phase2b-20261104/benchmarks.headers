@@ -1,0 +1,12 @@
+HTTP/2 401 
+date: Tue, 03 Nov 2026 23:44:04 GMT
+content-type: text/plain; charset=utf-8
+content-length: 12
+vary: origin, access-control-request-method, access-control-request-headers
+access-control-expose-headers: pyth-split-version
+strict-transport-security: max-age=31536000; includeSubDomains
+x-infra: platform-green
+cf-cache-status: DYNAMIC
+server: cloudflare
+cf-ray: a54f3eabf8c077a1-LHR
+

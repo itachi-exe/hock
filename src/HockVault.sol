@@ -35,6 +35,7 @@ contract HockVault {
     error Drift();
     error Slippage();
     error NotOwner();
+    error NotKeeper();
     error OracleSet();
 
     constructor(address _btc, address _musd, address _mezo, address _cl, address _swapper, address _treasury, uint256 _maxDriftBps) {
@@ -57,6 +58,15 @@ contract HockVault {
     }
 
     function deposit(uint256 a0, uint256 a1, uint256 minShares) external returns (uint256 shares) {
+        return _deposit(a0, a1, minShares);
+    }
+
+    function deposit(uint256 a0, uint256 a1, uint256 minShares, bytes[] calldata priceUpdate) external payable returns (uint256 shares) {
+        oracle.updatePriceFeeds{value: msg.value}(priceUpdate);
+        return _deposit(a0, a1, minShares);
+    }
+
+    function _deposit(uint256 a0, uint256 a1, uint256 minShares) internal returns (uint256 shares) {
         _checkDrift();
         uint256 before_ = totalSupply == 0 ? 0 : oracle.totalValue();
         btc.transferFrom(msg.sender, address(this), a0);
@@ -87,23 +97,35 @@ contract HockVault {
         emit Withdraw(msg.sender, shares, o0, o1);
     }
 
-    /// Anyone can call. Claims MEZO, takes 10%, swaps the rest into the pair and adds it to the position.
-    function harvest() external returns (uint256 reward) {
+    /// Only the deploying owner may choose the keeper's per-leg minimum outputs.
+    function harvest(uint256 minBtc, uint256 minMusd, bytes[] calldata priceUpdate) external payable returns (uint256 reward) {
+        if (msg.sender != owner) revert NotKeeper();
+        if (minBtc == 0 || minMusd == 0) revert Slippage();
+        oracle.updatePriceFeeds{value: msg.value}(priceUpdate);
+        _checkDrift();
         reward = cl.getReward(tokenId);
         if (reward == 0) return 0;
         uint256 fee = reward * FEE_BPS / 1e4;
         mezo.transfer(treasury, fee);
         uint256 rest = reward - fee;
         mezo.approve(address(swapper), rest);
-        // v1 limit: MEZO has no on-chain fair feed, so swap min-out is 0. The harvest is small next to the position.
         uint256 half = rest / 2;
-        uint256 g0 = swapper.swap(address(mezo), address(btc), half, 0);
-        uint256 g1 = swapper.swap(address(mezo), address(musd), rest - half, 0);
+        uint256 g0 = _swap(btc, half, minBtc);
+        uint256 g1 = _swap(musd, rest - half, minMusd);
         uint256 b0 = btc.balanceOf(address(this)); uint256 b1 = musd.balanceOf(address(this));
         btc.approve(address(cl), b0); musd.approve(address(cl), b1);
         _checkDrift();
         cl.increaseStaked(tokenId, b0, b1);
         emit Harvest(reward, fee, g0 + g1);
+    }
+
+    // A swapper's claimed output cannot satisfy a bound on the vault's actual receipt.
+    function _swap(IERC20 out, uint256 amount, uint256 minimum) internal returns (uint256 received) {
+        uint256 before_ = out.balanceOf(address(this));
+        swapper.swap(address(mezo), address(out), amount, minimum);
+        uint256 after_ = out.balanceOf(address(this));
+        if (after_ < before_ || after_ - before_ < minimum) revert Slippage();
+        return after_ - before_;
     }
 
     // ERC-20

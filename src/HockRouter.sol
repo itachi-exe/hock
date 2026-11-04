@@ -4,7 +4,9 @@ pragma solidity ^0.8.24;
 import {IERC20} from "./Interfaces.sol";
 
 interface IHockVaultLike is IERC20 {
+    function oracle() external view returns (address);
     function deposit(uint256 a0, uint256 a1, uint256 minShares) external returns (uint256);
+    function deposit(uint256 a0, uint256 a1, uint256 minShares, bytes[] calldata priceUpdate) external payable returns (uint256);
 }
 
 struct MarketParams { address loanToken; address collateralToken; address oracle; address irm; uint256 lltv; }
@@ -29,16 +31,24 @@ contract HockRouter {
     error NotAuthorized();
 
     constructor(address _vault, address _btc, address _musd, address _morpho, MarketParams memory _mp) {
-        if (_mp.collateralToken != _vault || _mp.loanToken != _musd) revert BadMarket();
+        if (_mp.collateralToken != _vault || _mp.loanToken != _musd || _mp.oracle != IHockVaultLike(_vault).oracle()) revert BadMarket();
         vault = IHockVaultLike(_vault); btc = IERC20(_btc); musd = IERC20(_musd); morpho = IMorpho(_morpho); mp = _mp;
     }
 
     function depositAndBorrow(uint256 a0, uint256 a1, uint256 minShares, uint256 borrowAmount) external returns (uint256 shares) {
+        return _depositAndBorrow(a0, a1, minShares, borrowAmount, new bytes[](0));
+    }
+
+    function depositAndBorrow(uint256 a0, uint256 a1, uint256 minShares, uint256 borrowAmount, bytes[] calldata priceUpdate) external payable returns (uint256 shares) {
+        return _depositAndBorrow(a0, a1, minShares, borrowAmount, priceUpdate);
+    }
+
+    function _depositAndBorrow(uint256 a0, uint256 a1, uint256 minShares, uint256 borrowAmount, bytes[] memory priceUpdate) internal returns (uint256 shares) {
         if (borrowAmount > 0 && !morpho.isAuthorized(msg.sender, address(this))) revert NotAuthorized();
         btc.transferFrom(msg.sender, address(this), a0);
         musd.transferFrom(msg.sender, address(this), a1);
         btc.approve(address(vault), a0); musd.approve(address(vault), a1);
-        shares = vault.deposit(a0, a1, minShares);
+        shares = vault.deposit{value: msg.value}(a0, a1, minShares, priceUpdate);
         // the vault hands back what the position could not take
         uint256 r0 = btc.balanceOf(address(this)); if (r0 > 0) btc.transfer(msg.sender, r0);
         uint256 r1 = musd.balanceOf(address(this)); if (r1 > 0) musd.transfer(msg.sender, r1);

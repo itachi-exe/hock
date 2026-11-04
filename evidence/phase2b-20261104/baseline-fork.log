@@ -1,0 +1,55 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5807         247          35        2229        2134
+Swap:           8191        6747        1444
+No files changed, compilation skipped
+
+Ran 15 tests for test/Hock.t.sol:HockTest
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450019)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 796866)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589594)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 632713)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518200)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 566891)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 565893)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505677)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 682731)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498398)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 662703)
+[PASS] test_staleFeed_reverts() (gas: 405600)
+[PASS] test_withdrawReturnsAssets() (gas: 458295)
+[PASS] test_zeroPrice_reverts() (gas: 26124)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 33.30ms (28.46ms CPU time)
+
+Ran 9 tests for test/HockFork.t.sol:HockForkTest
+[PASS] test_depositStakesInRealGauge() (gas: 1468400)
+Logs:
+  tokenId 231 liq 280588177866723418636
+  shares 153139965777930217195701
+
+[PASS] test_feedAdapters() (gas: 34314)
+[PASS] test_harvestPullsGaugeRewards() (gas: 1513666)
+Logs:
+  reward after 1 day 8569963403489468793599
+
+[PASS] test_positionConstants() (gas: 10000)
+[PASS] test_pythAdapterReadsLiveStaleMusdFeed() (gas: 26418)
+Logs:
+  live Pyth MUSD price 1002701180000000000 publishTime 1785145687
+
+[PASS] test_routerDepositPostBorrow() (gas: 3023179)
+Logs:
+  collateral shares 153139965777930217195701
+
+[PASS] test_routerRevertsWithoutMorphoAuthorization() (gas: 1319489)
+[PASS] test_secondDepositRestakesAndWithdrawWorks() (gas: 2584903)
+Logs:
+  withdrew btc 978613071822907313 musd 77498191488378045200113
+
+[PASS] test_spotMatchesFairPrice() (gas: 100196)
+Logs:
+  spot sqrt 280686860242810582542 fair sqrt 278012989796554799585
+
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 36.69ms (31.12ms CPU time)
+
+Ran 2 test suites in 247.84ms (70.00ms CPU time): 24 tests passed, 0 failed, 0 skipped (24 total tests)

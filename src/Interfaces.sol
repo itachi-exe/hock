@@ -13,6 +13,10 @@ interface IFeed {
     function latest() external view returns (uint256 price, uint256 updatedAt);
 }
 
+interface IPullFeed {
+    function updatePriceFeeds(bytes[] calldata priceUpdate) external payable;
+}
+
 /// Concentrated liquidity position manager + gauge, reduced to what Hock needs.
 /// token0 = BTC, token1 = MUSD. Sqrt prices are 1e18 scale (sqrt of MUSD per BTC).
 /// Staked positions stay staked while liquidity changes (the real adapter hides unstake and restake).

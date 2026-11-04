@@ -1,0 +1,5 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        6076         251          35        1955        1865
+Swap:           8191        6540        1651
+No files changed, compilation skipped
+No tests found in project! Forge looks for functions that start with `test`

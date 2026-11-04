@@ -1,0 +1,44 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5953         431          21        1960        1988
+Swap:           8191        6731        1460
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 45.74ms
+Compiler run successful!
+
+Ran 19 tests for test/Hock.t.sol:HockTest
+[PASS] testFuzz_keeperCannotDisableEitherMinimum(bool) (runs: 256, μ: 405290, ~: 405303)
+[PASS] testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool) (runs: 256, μ: 4667265, ~: 4653863)
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450275)
+[PASS] test_driftIsCheckedBeforeCallingSwapper() (gas: 502272)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 863755)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589940)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 498278)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518597)
+[PASS] test_onlyKeeperMayChooseHarvestMinima() (gas: 681954)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 567155)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 566075)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505887)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 683054)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498586)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 663012)
+[PASS] test_staleFeed_reverts() (gas: 405780)
+[PASS] test_withdrawReturnsAssets() (gas: 458450)
+[PASS] test_zeroPrice_reverts() (gas: 26219)
+Suite result: ok. 19 passed; 0 failed; 0 skipped; finished in 584.80ms (580.69ms CPU time)
+
+Ran 6 tests for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[PASS] test_emptyUpdateCannotStrandNativeCurrency() (gas: 24605)
+[PASS] test_futureDatedFeedRevertsBadPrice() (gas: 31370)
+[PASS] test_harvestPullUpdatePrecedesStaleOracleUse() (gas: 969564)
+[PASS] test_oracleUpdateRejectsZeroMusdAtomically() (gas: 139201)
+[PASS] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 733358)
+[PASS] test_updateOverpaymentIsRejectedAtomically() (gas: 46457)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 5.75ms (3.98ms CPU time)
+
+Ran 2 tests for test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[PASS] testFuzz_adapterRejectsShortActualOutput(bool) (runs: 256, μ: 1017089, ~: 1006010)
+[PASS] testFuzz_swapExecutesConfiguredTickSpacingRoute(bool) (runs: 256, μ: 1001815, ~: 989992)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 183.38ms (183.03ms CPU time)
+
+Ran 3 test suites in 777.39ms (773.94ms CPU time): 27 tests passed, 0 failed, 0 skipped (27 total tests)

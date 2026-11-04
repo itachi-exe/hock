@@ -1,0 +1,107 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5876         553          22        1916        2064
+Swap:           8191        6753        1438
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.46s
+Compiler run successful!
+
+Ran 1 test for test/Hock.t.sol:HockTest
+[FAIL: Error != expected error: swap ran before drift check != Drift()] test_driftIsCheckedBeforeCallingSwapper() (gas: 659697)
+Traces:
+  [659697] HockTest::test_driftIsCheckedBeforeCallingSwapper()
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [23084] MockToken::approve(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 1000000000000000000 [1e18])
+    │   └─ ← [Return] true
+    ├─ [23084] MockToken::approve(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 100000000000000000000000 [1e23])
+    │   └─ ← [Return] true
+    ├─ [388817] HockVault::deposit(1000000000000000000 [1e18], 100000000000000000000000 [1e23], 0)
+    │   ├─ [61254] HockOracle::fairSqrtPrice() [staticcall]
+    │   │   ├─ [4643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [4643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [2455] MockCL::spotSqrtPrice() [staticcall]
+    │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   ├─ [24514] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [24514] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [92438] MockCL::mintStaked(1000000000000000000 [1e18], 100000000000000000000000 [1e23])
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 999999999999999999 [9.999e17])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], MockCL: [0xa0Cb889707d426A7A386870A03bc70d1b0697598], 99999999999999999999595 [9.999e22])
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Return] 1, 999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]
+    │   ├─ [21778] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 1)
+    │   │   └─ ← [Return] true
+    │   ├─ [21778] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 405)
+    │   │   └─ ← [Return] true
+    │   ├─ [5163] HockOracle::valueOf(999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]) [staticcall]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: 0x00000000000000000000000000000000000A11cE, amount: 199999999999999999899595 [1.999e23])
+    │   ├─ emit Deposit(who: 0x00000000000000000000000000000000000A11cE, a0: 999999999999999999 [9.999e17], a1: 99999999999999999999595 [9.999e22], shares: 199999999999999999899595 [1.999e23])
+    │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    ├─ [0] VM::getBlockTimestamp() [staticcall]
+    │   └─ ← [Return] 1000000 [1e6]
+    ├─ [0] VM::warp(1003600 [1.003e6])
+    │   └─ ← [Return]
+    ├─ [3339] MockCL::setSpot(284604989415154139879 [2.846e20])
+    │   └─ ← [Stop]
+    ├─ [0] VM::mockCallRevert(MockSwapper: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 0xfe029156, 0x08c379a00000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000001b737761702072616e206265666f726520647269667420636865636b0000000000)
+    │   └─ ← [Return]
+    ├─ [0] VM::expectRevert(Drift())
+    │   └─ ← [Return]
+    ├─ [97055] HockVault::harvest(5000000000000000 [5e15], 600000000000000000000 [6e20], [])
+    │   ├─ [4262] HockOracle::updatePriceFeeds([])
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   └─ ← [Stop]
+    │   ├─ [36490] MockCL::getReward(1)
+    │   │   ├─ [23039] MockToken::mint(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 2772000000000000000000 [2.772e21])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000096453a515086d00000
+    │   ├─ [23778] MockToken::transfer(0x0000000000000000000000000000000000007EA5, 277200000000000000000 [2.772e20])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockSwapper: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 2494800000000000000000 [2.494e21])
+    │   │   └─ ← [Return] true
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c]) [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [0] MockSwapper::swap(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], MockToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 1247400000000000000000 [1.247e21], 5000000000000000 [5e15])
+    │   │   └─ ← [Revert] swap ran before drift check
+    │   └─ ← [Revert] swap ran before drift check
+    └─ ← [Revert] Error != expected error: swap ran before drift check != Drift()
+
+Backtrace:
+  at MockSwapper.swap
+  at HockVault.harvest
+  at HockTest.test_driftIsCheckedBeforeCallingSwapper
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 8.09ms (2.79ms CPU time)
+
+Ran 1 test suite in 34.69ms (8.09ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/Hock.t.sol:HockTest
+[FAIL: Error != expected error: swap ran before drift check != Drift()] test_driftIsCheckedBeforeCallingSwapper() (gas: 659697)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test

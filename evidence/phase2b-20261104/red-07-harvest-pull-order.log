@@ -1,0 +1,220 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5758         701          22        1809        2182
+Swap:           8191        6792        1399
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.60s
+Compiler run successful!
+
+Ran 1 test for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[FAIL: StalePrice()] test_harvestPullUpdatePrecedesStaleOracleUse() (gas: 929976)
+Traces:
+  [10372469] HockPullUpdateTest::setUp()
+    ├─ [0] VM::warp(1000000 [1e6])
+    │   └─ ← [Return]
+    ├─ [364197] → new MockToken@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [364197] → new MockToken@0x2e234DAe75C793f67A35089C9d99245E1C58470b
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [364197] → new MockToken@0xF62849F9A0B5Bf2913b396098F7c7019b51A820a
+    │   └─ ← [Return] 1819 bytes of code
+    ├─ [162292] → new MockFeed@0x5991A2dF15A8F6A256D3Ec51E99254Cd3fb576A9
+    │   └─ ← [Return] 588 bytes of code
+    ├─ [608436] → new MockPyth@0xc7183455a4C133Ae270771860664b6B7ec320bB1
+    │   └─ ← [Return] 3039 bytes of code
+    ├─ [46150] MockPyth::seed(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de, 100000000 [1e8], -8, 1000000 [1e6])
+    │   └─ ← [Stop]
+    ├─ [595891] → new PythFeedAdapter@0xa0Cb889707d426A7A386870A03bc70d1b0697598
+    │   └─ ← [Return] 2973 bytes of code
+    ├─ [1049080] → new MockCL@0x1d1499e622D69689cdf9004d05Ec547d650Ff211
+    │   └─ ← [Return] 4238 bytes of code
+    ├─ [385919] → new MockSwapper@0xA4AD4f68d0b91CFD19687c881e50f3A00242828c
+    │   └─ ← [Return] 1369 bytes of code
+    ├─ [2532759] → new HockVault@0x03A6a84cD762D9707A21605b548aaaB891562aAb
+    │   └─ ← [Return] 12527 bytes of code
+    ├─ [990343] → new HockOracle@0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF
+    │   └─ ← [Return] 4936 bytes of code
+    ├─ [22976] HockVault::setOracle(HockOracle: [0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF])
+    │   └─ ← [Stop]
+    ├─ [696726] → new UnitMorpho@0x15cF58144EF33af1e14b5208015d11F9143E27b9
+    │   └─ ← [Return] 3480 bytes of code
+    ├─ [1271588] → new HockRouter@0x212224D2F2d262cd093eE13240ca4873fcCBbA3C
+    │   └─ ← [Return] 5783 bytes of code
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(0x00000000000000000000000000000000000A11cE, 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [23039] MockToken::mint(UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [0] VM::deal(0x00000000000000000000000000000000000A11cE, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [0] VM::startPrank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [23084] MockToken::approve(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [23084] MockToken::approve(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 115792089237316195423570985008687907853269984665640564039457584007913129639935 [1.157e77])
+    │   └─ ← [Return] true
+    ├─ [23031] UnitMorpho::setAuthorization(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], true)
+    │   └─ ← [Stop]
+    ├─ [0] VM::stopPrank()
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [929976] HockPullUpdateTest::test_harvestPullUpdatePrecedesStaleOracleUse()
+    ├─ [0] VM::prank(0x00000000000000000000000000000000000A11cE)
+    │   └─ ← [Return]
+    ├─ [638759] HockRouter::depositAndBorrow(1000000000000000000 [1e18], 100000000000000000000000 [1e23], 1000000000000000000 [1e18], 0)
+    │   ├─ [34114] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [34114] MockToken::transferFrom(0x00000000000000000000000000000000000A11cE, HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 1000000000000000000 [1e18])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 100000000000000000000000 [1e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [408249] HockVault::deposit(1000000000000000000 [1e18], 100000000000000000000000 [1e23], 1000000000000000000 [1e18], [])
+    │   │   ├─ [23639] HockOracle::updatePriceFeeds([])
+    │   │   │   ├─ [11020] PythFeedAdapter::latest() [staticcall]
+    │   │   │   │   ├─ [5874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   │   ├─ [4643] MockFeed::latest() [staticcall]
+    │   │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   │   └─ ← [Stop]
+    │   │   ├─ [52131] HockOracle::fairSqrtPrice() [staticcall]
+    │   │   │   ├─ [4520] PythFeedAdapter::latest() [staticcall]
+    │   │   │   │   ├─ [1874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   │   ├─ [2455] MockCL::spotSqrtPrice() [staticcall]
+    │   │   │   └─ ← [Return] 316227766016837933199 [3.162e20]
+    │   │   ├─ [24514] MockToken::transferFrom(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 1000000000000000000 [1e18])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [24514] MockToken::transferFrom(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 100000000000000000000000 [1e23])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [23084] MockToken::approve(MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 1000000000000000000 [1e18])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [23084] MockToken::approve(MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 100000000000000000000000 [1e23])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [92438] MockCL::mintStaked(1000000000000000000 [1e18], 100000000000000000000000 [1e23])
+    │   │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 999999999999999999 [9.999e17])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 99999999999999999999595 [9.999e22])
+    │   │   │   │   └─ ← [Return] true
+    │   │   │   └─ ← [Return] 1, 999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]
+    │   │   ├─ [21778] MockToken::transfer(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 1)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [21778] MockToken::transfer(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], 405)
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [9040] HockOracle::valueOf(999999999999999999 [9.999e17], 99999999999999999999595 [9.999e22]) [staticcall]
+    │   │   │   ├─ [4520] PythFeedAdapter::latest() [staticcall]
+    │   │   │   │   ├─ [1874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   │   │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    │   │   ├─ emit Transfer(from: 0x0000000000000000000000000000000000000000, to: HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], amount: 199999999999999999899595 [1.999e23])
+    │   │   ├─ emit Deposit(who: HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], a0: 999999999999999999 [9.999e17], a1: 99999999999999999999595 [9.999e22], shares: 199999999999999999899595 [1.999e23])
+    │   │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    │   ├─ [845] MockToken::balanceOf(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C]) [staticcall]
+    │   │   └─ ← [Return] 1
+    │   ├─ [1878] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 1)
+    │   │   └─ ← [Return] true
+    │   ├─ [845] MockToken::balanceOf(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C]) [staticcall]
+    │   │   └─ ← [Return] 405
+    │   ├─ [1878] MockToken::transfer(0x00000000000000000000000000000000000A11cE, 405)
+    │   │   └─ ← [Return] true
+    │   ├─ [25123] HockVault::approve(UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 199999999999999999899595 [1.999e23])
+    │   │   ├─ emit Approval(owner: HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], spender: UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], amount: 199999999999999999899595 [1.999e23])
+    │   │   └─ ← [Return] true
+    │   ├─ [52899] UnitMorpho::supplyCollateral(MarketParams({ loanToken: 0x2e234DAe75C793f67A35089C9d99245E1C58470b, collateralToken: 0x03A6a84cD762D9707A21605b548aaaB891562aAb, oracle: 0xD6BbDE9174b1CdAa358d2Cf4D57D1a9F7178FBfF, irm: 0x0000000000000000000000000000000000000001, lltv: 770000000000000000 [7.7e17] }), 199999999999999999899595 [1.999e23], 0x00000000000000000000000000000000000A11cE, 0x)
+    │   │   ├─ [26837] HockVault::transferFrom(HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], 199999999999999999899595 [1.999e23])
+    │   │   │   ├─ emit Transfer(from: HockRouter: [0x212224D2F2d262cd093eE13240ca4873fcCBbA3C], to: UnitMorpho: [0x15cF58144EF33af1e14b5208015d11F9143E27b9], amount: 199999999999999999899595 [1.999e23])
+    │   │   │   └─ ← [Return] true
+    │   │   └─ ← [Stop]
+    │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    ├─ [61390] HockOracle::totalValue() [staticcall]
+    │   ├─ [4520] PythFeedAdapter::latest() [staticcall]
+    │   │   ├─ [1874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   ├─ [643] MockFeed::latest() [staticcall]
+    │   │   └─ ← [Return] 100000000000000000000000 [1e23], 1000000 [1e6]
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]) [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]) [staticcall]
+    │   │   └─ ← [Return] 0
+    │   ├─ [515] HockVault::tokenId() [staticcall]
+    │   │   └─ ← [Return] 1
+    │   ├─ [1224] MockCL::position(1) [staticcall]
+    │   │   └─ ← [Return] 632455532033675866397 [6.324e20], 158113883008418966599 [1.581e20], 632455532033675866399 [6.324e20]
+    │   └─ ← [Return] 199999999999999999899595 [1.999e23]
+    ├─ [0] VM::getBlockTimestamp() [staticcall]
+    │   └─ ← [Return] 1000000 [1e6]
+    ├─ [0] VM::warp(1086400 [1.086e6])
+    │   └─ ← [Return]
+    ├─ [3449] MockFeed::set(100000000000000000000000 [1e23])
+    │   └─ ← [Stop]
+    ├─ [392] MockPyth::MARKER() [staticcall]
+    │   └─ ← [Return] 0x6d6f636b206f6e6c790000000000000000000000000000000000000000000000
+    ├─ [347] MockPyth::FEE() [staticcall]
+    │   └─ ← [Return] 7
+    ├─ [0] VM::deal(HockPullUpdateTest: [0x7FA9385bE102ac3EAc297483Dd6233D62b3e1496], 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    ├─ [192337] HockVault::harvest{value: 7}(140000000000000000 [1.4e17], 14000000000000000000000 [1.4e22], [0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de0000000000000000000000000000000000000000000000000000000005f5e100fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff800000000000000000000000000000000000000000000000000000000001093c06d6f636b206f6e6c790000000000000000000000000000000000000000000000])
+    │   ├─ [36490] MockCL::getReward(1)
+    │   │   ├─ [23039] MockToken::mint(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 66528000000000000000000 [6.652e22])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 0x000000000000000000000000000000000000000000000e167d779f8ca3800000
+    │   ├─ [23778] MockToken::transfer(0x0000000000000000000000000000000000007EA5, 6652800000000000000000 [6.652e21])
+    │   │   └─ ← [Return] true
+    │   ├─ [23084] MockToken::approve(MockSwapper: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 59875200000000000000000 [5.987e22])
+    │   │   └─ ← [Return] true
+    │   ├─ [57698] MockSwapper::swap(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], MockToken: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 29937600000000000000000 [2.993e22], 140000000000000000 [1.4e17])
+    │   │   ├─ [24514] MockToken::transferFrom(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], MockSwapper: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 29937600000000000000000 [2.993e22])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [21039] MockToken::mint(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 149688000000000000 [1.496e17])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 149688000000000000 [1.496e17]
+    │   ├─ [27282] MockSwapper::swap(MockToken: [0xF62849F9A0B5Bf2913b396098F7c7019b51A820a], MockToken: [0x2e234DAe75C793f67A35089C9d99245E1C58470b], 29937600000000000000000 [2.993e22], 14000000000000000000000 [1.4e22])
+    │   │   ├─ [2614] MockToken::transferFrom(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], MockSwapper: [0xA4AD4f68d0b91CFD19687c881e50f3A00242828c], 29937600000000000000000 [2.993e22])
+    │   │   │   └─ ← [Return] true
+    │   │   ├─ [21039] MockToken::mint(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb], 14968800000000000000000 [1.496e22])
+    │   │   │   └─ ← [Stop]
+    │   │   └─ ← [Return] 14968800000000000000000 [1.496e22]
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]) [staticcall]
+    │   │   └─ ← [Return] 149688000000000000 [1.496e17]
+    │   ├─ [845] MockToken::balanceOf(HockVault: [0x03A6a84cD762D9707A21605b548aaaB891562aAb]) [staticcall]
+    │   │   └─ ← [Return] 14968800000000000000000 [1.496e22]
+    │   ├─ [1084] MockToken::approve(MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 149688000000000000 [1.496e17])
+    │   │   └─ ← [Return] true
+    │   ├─ [1084] MockToken::approve(MockCL: [0x1d1499e622D69689cdf9004d05Ec547d650Ff211], 14968800000000000000000 [1.496e22])
+    │   │   └─ ← [Return] true
+    │   ├─ [5777] HockOracle::fairSqrtPrice() [staticcall]
+    │   │   ├─ [4520] PythFeedAdapter::latest() [staticcall]
+    │   │   │   ├─ [1874] MockPyth::getPriceUnsafe(0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de) [staticcall]
+    │   │   │   │   └─ ← [Return] 100000000 [1e8], 0, -8, 1000000 [1e6]
+    │   │   │   └─ ← [Return] 1000000000000000000 [1e18], 1000000 [1e6]
+    │   │   └─ ← [Revert] StalePrice()
+    │   └─ ← [Revert] StalePrice()
+    └─ ← [Revert] StalePrice()
+
+Backtrace:
+  at HockOracle.fairSqrtPrice
+  at HockVault.harvest
+  at HockPullUpdateTest.test_harvestPullUpdatePrecedesStaleOracleUse
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 11.96ms (4.17ms CPU time)
+
+Ran 1 test suite in 46.31ms (11.96ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/HockPullUpdate.t.sol:HockPullUpdateTest
+[FAIL: StalePrice()] test_harvestPullUpdatePrecedesStaleOracleUse() (gas: 929976)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test

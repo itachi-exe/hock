@@ -1,0 +1,22 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5917         465          20        1962        2023
+Swap:           8191        6731        1460
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.17s
+Compiler run successful!
+
+Ran 1 test for test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[FAIL: Error != expected error: Slippage() != custom error 0xc4c321d1; counterexample: calldata=0xd96429bf0000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_invalidRouteRejectedBeforePull(bool) (runs: 0, μ: 0, ~: 0)
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 12.71ms (10.31ms CPU time)
+
+Ran 1 test suite in 24.35ms (12.71ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[FAIL: Error != expected error: Slippage() != custom error 0xc4c321d1; counterexample: calldata=0xd96429bf0000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_invalidRouteRejectedBeforePull(bool) (runs: 0, μ: 0, ~: 0)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test
+
+Fuzz seed: 0x1 (use `--fuzz-seed` to reproduce)

@@ -1,0 +1,31 @@
+COMMAND: /opt/hermes/.foundry/bin/forge test --match-contract MezoSwapForkTest --fork-url https://rpc.test.mezo.org --fork-block-number 16553087 -vv
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.61s
+Compiler run successful!
+
+Ran 4 tests for test/MezoSwapFork.t.sol:MezoSwapForkTest
+[FAIL: assertion failed: 100000000000000000 != 0; counterexample: calldata=0x0c12ef130000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_realRouterEnforcesOutputMinimumAtomically(bool) (runs: 0, μ: 0, ~: 0)
+[PASS] test_harvestCompoundsThroughRealRouterAndGauge() (gas: 8370207)
+Logs:
+  real harvest MEZO reward wei 99189391244091073
+  real harvest liquidity increase 155462898532118
+
+[FAIL: assertion failed: 100000000000000000 != 0] test_realMezoToBtcSwap() (gas: 440651)
+[FAIL: assertion failed: 1044537522666152112 != 944537522666152112] test_realMezoToMusdSwap() (gas: 302358)
+Suite result: FAILED. 1 passed; 3 failed; 0 skipped; finished in 34.94ms (62.22ms CPU time)
+
+Ran 1 test suite in 291.66ms (34.94ms CPU time): 1 tests passed, 3 failed, 0 skipped (4 total tests)
+
+Failing tests:
+Encountered 3 failing tests in test/MezoSwapFork.t.sol:MezoSwapForkTest
+[FAIL: assertion failed: 100000000000000000 != 0; counterexample: calldata=0x0c12ef130000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_realRouterEnforcesOutputMinimumAtomically(bool) (runs: 0, μ: 0, ~: 0)
+[FAIL: assertion failed: 100000000000000000 != 0] test_realMezoToBtcSwap() (gas: 440651)
+[FAIL: assertion failed: 1044537522666152112 != 944537522666152112] test_realMezoToMusdSwap() (gas: 302358)
+
+Encountered a total of 3 failing tests, 1 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 3 failed tests
+
+Fuzz seed: 0xd8cac49bffcc27b565e2f3fa5be4378fbef5d5418e59644a1d2db9fb944dd9cd (use `--fuzz-seed` to reproduce)
+
+EXIT: 1

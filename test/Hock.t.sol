@@ -7,6 +7,24 @@ import {HockOracle} from "../src/HockOracle.sol";
 import {HockMath} from "../src/HockMath.sol";
 import {MockToken, MockCL, MockSwapper, MockFeed} from "./mocks/Mocks.sol";
 
+interface IBoundedHarvest {
+    function harvest(uint256 minBtc, uint256 minMusd, bytes[] calldata priceUpdate) external payable returns (uint256);
+}
+
+/// Delivers one wei below the bound on one leg while claiming the full minimum.
+contract LyingSwapper {
+    MockToken public immutable btc;
+    MockToken public immutable mezo;
+    bool public immutable shortBtc;
+    constructor(MockToken _btc, MockToken _mezo, bool _shortBtc) { btc = _btc; mezo = _mezo; shortBtc = _shortBtc; }
+    function swap(address, address out, uint256 amount, uint256 minOut) external returns (uint256) {
+        mezo.transferFrom(msg.sender, address(this), amount);
+        bool short = (out == address(btc)) == shortBtc;
+        MockToken(out).mint(msg.sender, short ? minOut - 1 : minOut);
+        return minOut;
+    }
+}
+
 contract HockTest is Test {
     MockToken btc; MockToken musd; MockToken mezo;
     MockCL cl; MockSwapper sw; MockFeed btcFeed; MockFeed musdFeed;
@@ -61,12 +79,63 @@ contract HockTest is Test {
     }
 
     // ---- harvest and compound
+    function test_driftIsCheckedBeforeCallingSwapper() public {
+        _deposit(alice, 1 ether, 100_000 ether);
+        skip(1 hours);
+        cl.setSpot(HockMath.sqrtWad(P) * 9 / 10);
+        vm.mockCallRevert(address(sw), abi.encodeWithSelector(sw.swap.selector), abi.encodeWithSignature("Error(string)", "swap ran before drift check"));
+        vm.expectRevert(HockVault.Drift.selector);
+        vault.harvest(0.005 ether, 600 ether, new bytes[](0));
+    }
+
+    function testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool shortBtc) public {
+        LyingSwapper liar = new LyingSwapper(btc, mezo, shortBtc);
+        vault = new HockVault(address(btc), address(musd), address(mezo), address(cl), address(liar), treasury, 200);
+        oracle = new HockOracle(address(vault), address(btc), address(musd), address(cl), address(btcFeed), address(musdFeed), 1 hours);
+        vault.setOracle(address(oracle));
+        uint256 shares = _deposit(alice, 1 ether, 100_000 ether);
+        btc.mint(address(vault), 1 ether); musd.mint(address(vault), 1_000 ether);
+        uint128 liquidityBefore = cl.liq();
+        uint256 lastClaimBefore = cl.lastClaim();
+        skip(1 hours);
+        vm.expectRevert(HockVault.Slippage.selector);
+        vault.harvest(0.005 ether, 600 ether, new bytes[](0));
+        assertEq(cl.lastClaim(), lastClaimBefore);
+        assertEq(cl.liq(), liquidityBefore);
+        assertEq(mezo.balanceOf(treasury), 0);
+        assertEq(mezo.balanceOf(address(liar)), 0);
+        assertEq(btc.balanceOf(address(vault)), 1 ether);
+        assertEq(musd.balanceOf(address(vault)), 1_000 ether);
+        assertEq(vault.totalSupply(), shares);
+    }
+
+    function testFuzz_keeperCannotDisableEitherMinimum(bool zeroBtc) public {
+        _deposit(alice, 1 ether, 100_000 ether);
+        skip(1 hours);
+        vm.expectRevert(HockVault.Slippage.selector);
+        vault.harvest(zeroBtc ? 0 : 0.005 ether, zeroBtc ? 600 ether : 0, new bytes[](0));
+    }
+
+    function test_onlyKeeperMayChooseHarvestMinima() public {
+        _deposit(alice, 1 ether, 100_000 ether);
+        skip(1 hours);
+        vm.prank(attacker);
+        (bool ok,) = address(vault).call(abi.encodeWithSignature("harvest()"));
+        assertFalse(ok, "unbounded harvest() remained callable");
+        vm.prank(attacker);
+        vm.expectRevert(bytes4(keccak256("NotKeeper()")));
+        IBoundedHarvest(address(vault)).harvest(1, 1, new bytes[](0));
+        uint256 reward = IBoundedHarvest(address(vault)).harvest(0.005 ether, 600 ether, new bytes[](0));
+        assertGt(reward, 0);
+        assertEq(mezo.balanceOf(treasury), reward / 10);
+    }
+
     function test_harvest_compoundsAndPaysFee() public {
         uint256 sh = _deposit(alice, 1 ether, 100_000 ether);
         uint256 v0 = oracle.totalValue();
         skip(1 days);
         btcFeed.set(P); musdFeed.set(1 ether);                    // keepers refresh feeds
-        uint256 reward = vault.harvest();
+        uint256 reward = vault.harvest(0.14 ether, 14_000 ether, new bytes[](0));
         assertEq(reward, 86_400 * 0.77 ether);
         assertEq(mezo.balanceOf(treasury), reward / 10);          // 10% fee
         assertGt(oracle.totalValue(), v0);                        // value grew, shares did not
@@ -110,7 +179,7 @@ contract HockTest is Test {
         skip(1 hours);
         cl.setSpot(HockMath.sqrtWad(P) * 9 / 10);
         vm.expectRevert(HockVault.Drift.selector);
-        vault.harvest();
+        vault.harvest(0.005 ether, 600 ether, new bytes[](0));
     }
 
     // ---- oracle feed safety

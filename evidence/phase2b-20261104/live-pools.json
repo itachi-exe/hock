@@ -1,0 +1,225 @@
+{
+  "rpc": "https://rpc.test.mezo.org",
+  "chainId": 31611,
+  "block": 16553087,
+  "factory": "0x7B61BC8Aa460476d142F1CD107A47297002f69ff",
+  "allPoolsLength": 27,
+  "pools": [
+    {
+      "address": "0x0f5557d9f2be5728779bb7d885de00f5384470fc",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 23768448754279301278063185100800
+    },
+    {
+      "address": "0xeb7d017cf42d9edc6f166d6d3c243962dad06ceb",
+      "token0": "0x7b7c000000000000000000000000000000000000",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 2000,
+      "liquidity": 2207361450404204867,
+      "sqrtPriceX96": 1001547695935671393326421426108
+    },
+    {
+      "address": "0xf4ac4b1b5d5e9898cb21459fd740901c44a847f7",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 2000,
+      "liquidity": 37681993785711028934,
+      "sqrtPriceX96": 294105713007750570975384679
+    },
+    {
+      "address": "0x6f216391cd1c650aa5db2b62eaa73746cacae292",
+      "token0": "0x637e22a1ebbca50ea2d34027c238317fd10003eb",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 100,
+      "liquidity": 4854774698406019094,
+      "sqrtPriceX96": 111867437222636500743848549170
+    },
+    {
+      "address": "0x6192597d177a72e9eaa2e74986fd3cea9b5ac598",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 50,
+      "liquidity": 236354664081651092589,
+      "sqrtPriceX96": 80734583880615795691932670219
+    },
+    {
+      "address": "0x12a1334a017125f420f956fd13b554d4df793aab",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 100,
+      "liquidity": 0,
+      "sqrtPriceX96": 4295128740
+    },
+    {
+      "address": "0x76c4311ca6846deaefab0b20221f84c653a41e03",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 100,
+      "liquidity": 145614441620739735507,
+      "sqrtPriceX96": 293664828858264887214997685
+    },
+    {
+      "address": "0x877594e7e60b2594c90d1eea4a2b3f0ec8317412",
+      "token0": "0x637e22a1ebbca50ea2d34027c238317fd10003eb",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 2000,
+      "liquidity": 38584613330867584206,
+      "sqrtPriceX96": 79228162514264337593543950336
+    },
+    {
+      "address": "0x026db82ac7abf60bf1a81317c9dbd63702b85850",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 50,
+      "liquidity": 81418626503195790140,
+      "sqrtPriceX96": 273779634502915068443179877
+    },
+    {
+      "address": "0x3605b8c4ac9e6c2a6deb7acaa9ad02bc69a6f8e0",
+      "token0": "0x637e22a1ebbca50ea2d34027c238317fd10003eb",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 254773287930745412031614237
+    },
+    {
+      "address": "0xfe31b6033bcda0ebec9fb789ee21bbc400175997",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 10,
+      "liquidity": 476465596472878322401,
+      "sqrtPriceX96": 282265306062874956799834620
+    },
+    {
+      "address": "0x3b653034c3d5d1f3abb64c0cbdfe932d1d8a8dc1",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000000",
+      "tickSpacing": 1,
+      "liquidity": 476548421891923587169,
+      "sqrtPriceX96": 286077004817051233915004576
+    },
+    {
+      "address": "0xe110e727dda9fc28222ed83af176536a9ead6ce3",
+      "token0": "0x7b7c000000000000000000000000000000000000",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 200,
+      "liquidity": 8111810320588,
+      "sqrtPriceX96": 162600417880769577685922608
+    },
+    {
+      "address": "0xc9f9c4ce0e25f435db60ef5a0024c9949c53375b",
+      "token0": "0x7b7c000000000000000000000000000000000000",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 100,
+      "liquidity": 0,
+      "sqrtPriceX96": 34614496357786404940781045609165
+    },
+    {
+      "address": "0x4450128647d32a27bdcd2f8fd4d3119326c22810",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 2000,
+      "liquidity": 96584307949905987181,
+      "sqrtPriceX96": 35632471003673771389169724772
+    },
+    {
+      "address": "0x0c192f063384818fb3bf00722b296820d4877e74",
+      "token0": "0x7b7c000000000000000000000000000000000000",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 50,
+      "liquidity": 335789577407068716,
+      "sqrtPriceX96": 11038553347571869727916263420212
+    },
+    {
+      "address": "0x3fd0c227b3a3ee107329e480ecd604358c5db5bd",
+      "token0": "0x7b7c000000000000000000000000000000000000",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 10,
+      "liquidity": 0,
+      "sqrtPriceX96": 4295128740
+    },
+    {
+      "address": "0x4cb9e8a9d0a2a72d3b0eb6ed1f56fa6f6ea50bea",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7b7c000000000000000000000000000000000001",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 4295128740
+    },
+    {
+      "address": "0xb34caf03f2a326b3b7ebaceed6295a39be8d7139",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7670000000000000000000000000000000000000",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 299454306921933315985456861
+    },
+    {
+      "address": "0x7cb429fb07574e9b379fa847accebf5d83885d5a",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x185e70ebfb606ea8f3365a2952ad3aa677210366",
+      "tickSpacing": 200,
+      "liquidity": 11836814062219386362,
+      "sqrtPriceX96": 282787899089031780752713308
+    },
+    {
+      "address": "0x56543f5e69b610c44ad1089b695b5ded095fb6bd",
+      "token0": "0x185e70ebfb606ea8f3365a2952ad3aa677210366",
+      "token1": "0x99dbba550d4bfd8c83ffae9711b243b5ef6ef082",
+      "tickSpacing": 200,
+      "liquidity": 525559090852541810,
+      "sqrtPriceX96": 143527786878969956822854453860385
+    },
+    {
+      "address": "0x0ed7a98157dd7ddab6ea51d477ea933aa911b850",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0xf2aeb53d71cd541efeaa37788f0841d7d21612f9",
+      "tickSpacing": 200,
+      "liquidity": 1195871185161723051202,
+      "sqrtPriceX96": 309459385893598708399061388
+    },
+    {
+      "address": "0x81a369a10217b760e8499a0eb2de930df10ebe4d",
+      "token0": "0x0aeddeab271bc032d6758c34dc8356632d6f812e",
+      "token1": "0xf2aeb53d71cd541efeaa37788f0841d7d21612f9",
+      "tickSpacing": 200,
+      "liquidity": 1947689125908625347595,
+      "sqrtPriceX96": 28704092629450610615624404
+    },
+    {
+      "address": "0xb5f7215a462f1765128e30c635b8f1e8f58019c2",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7c8dc7c60037bc9e1c48ae0ed61e33bede90fb0d",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 279594573328794432426428971
+    },
+    {
+      "address": "0x921ff681506d73bc7df7b782d0cec56710939aa2",
+      "token0": "0x3b20f89f755012049693f042e0a25caa3fbd7612",
+      "token1": "0x7c8dc7c60037bc9e1c48ae0ed61e33bede90fb0d",
+      "tickSpacing": 200,
+      "liquidity": 0,
+      "sqrtPriceX96": 23765594313934896390264753
+    },
+    {
+      "address": "0x1f7cd33b524adabe371f666ba6690f3dbd4a540e",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0x7ea355d150e9bf0e6578816659d787dd0ad2e349",
+      "tickSpacing": 1,
+      "liquidity": 1816165996928523773744646,
+      "sqrtPriceX96": 79644796077938180118464605753
+    },
+    {
+      "address": "0xf6212414351f29ab816371f6b4cee51960916c2a",
+      "token0": "0x118917a40faf1cd7a13db0ef56c86de7973ac503",
+      "token1": "0xe1a26db653708a2ad8f824e92db9852410e33a59",
+      "tickSpacing": 10,
+      "liquidity": 0,
+      "sqrtPriceX96": 78265700014404525232019
+    }
+  ]
+}

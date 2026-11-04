@@ -1,0 +1,97 @@
+COMMAND: /opt/hermes/.foundry/bin/forge test --fork-url https://rpc.test.mezo.org --fork-block-number 16553087 -vv
+Compiling 2 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.78s
+Compiler run successful!
+
+Ran 9 tests for test/HockFork.t.sol:HockForkTest
+[PASS] test_depositStakesInRealGauge() (gas: 1468586)
+Logs:
+  tokenId 231 liq 280588177866723418636
+  shares 153139965777930217195701
+
+[PASS] test_feedAdapters() (gas: 34314)
+[PASS] test_harvestPullsGaugeRewards() (gas: 1513821)
+Logs:
+  reward after 1 day 8569963403489468793599
+
+[PASS] test_positionConstants() (gas: 10000)
+[PASS] test_pythAdapterReadsLiveStaleMusdFeed() (gas: 26418)
+Logs:
+  live Pyth MUSD price 1002701180000000000 publishTime 1785145687
+
+[PASS] test_routerDepositPostBorrow() (gas: 3306913)
+Logs:
+  collateral shares 153139965777930217195701
+
+[PASS] test_routerRevertsWithoutMorphoAuthorization() (gas: 1596578)
+[PASS] test_secondDepositRestakesAndWithdrawWorks() (gas: 2585244)
+Logs:
+  withdrew btc 978613071822907313 musd 77498191488378045200113
+
+[PASS] test_spotMatchesFairPrice() (gas: 100322)
+Logs:
+  spot sqrt 280686860242810582542 fair sqrt 278012989796554799585
+
+Suite result: ok. 9 passed; 0 failed; 0 skipped; finished in 114.36ms (105.53ms CPU time)
+
+Ran 7 tests for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[PASS] test_emptyUpdateCannotStrandNativeCurrency() (gas: 24583)
+[PASS] test_futureDatedFeedRevertsBadPrice() (gas: 31370)
+[PASS] test_harvestPullUpdatePrecedesStaleOracleUse() (gas: 969564)
+[PASS] test_oracleUpdateRejectsZeroMusdAtomically() (gas: 139201)
+[PASS] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 733358)
+[PASS] test_routerRejectsMarketWithDifferentOracle() (gas: 56218)
+[PASS] test_updateOverpaymentIsRejectedAtomically() (gas: 46546)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 270.23ms (257.89ms CPU time)
+
+Ran 4 tests for test/MezoSwapFork.t.sol:MezoSwapForkTest
+[PASS] testFuzz_realRouterEnforcesOutputMinimumAtomically(bool) (runs: 256, μ: 367144, ~: 422215)
+[PASS] test_harvestCompoundsThroughRealRouterAndGauge() (gas: 8370207)
+Logs:
+  real harvest MEZO reward wei 99189391244091073
+  real harvest liquidity increase 155462898532118
+
+[PASS] test_realMezoToBtcSwap() (gas: 364903)
+Logs:
+  real MEZO->MUSD->BTC output wei 11982702665777
+
+[PASS] test_realMezoToMusdSwap() (gas: 254506)
+Logs:
+  real MEZO->MUSD output wei 944537522666152112
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 863.54ms (898.67ms CPU time)
+
+Ran 6 tests for test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[PASS] testFuzz_adapterRejectsShortActualOutput(bool) (runs: 256, μ: 1272556, ~: 1284081)
+[PASS] testFuzz_falseTokenReturnRevertsAtomically(uint8) (runs: 256, μ: 2072968, ~: 2037248)
+[PASS] testFuzz_invalidRouteRejectedBeforePull(bool) (runs: 256, μ: 1041189, ~: 1041169)
+[PASS] testFuzz_swapExecutesConfiguredTickSpacingRoute(bool) (runs: 256, μ: 1257303, ~: 1269607)
+[PASS] testFuzz_swapRequiresPositiveAmountAndMinimum(bool) (runs: 256, μ: 1037418, ~: 1037404)
+[PASS] test_partialInputFillRevertsWithoutStrandingDust() (gas: 1301017)
+Suite result: ok. 6 passed; 0 failed; 0 skipped; finished in 980.78ms (1.18s CPU time)
+
+Ran 19 tests for test/Hock.t.sol:HockTest
+[PASS] testFuzz_keeperCannotDisableEitherMinimum(bool) (runs: 256, μ: 405289, ~: 405276)
+[PASS] testFuzz_shortLegRevertsAtomicallyDespiteClaimAndIdleFunds(bool) (runs: 256, μ: 4668262, ~: 4682219)
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450275)
+[PASS] test_driftIsCheckedBeforeCallingSwapper() (gas: 502272)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 863755)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589940)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 498278)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518597)
+[PASS] test_onlyKeeperMayChooseHarvestMinima() (gas: 681954)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 567155)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 566075)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505887)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 683054)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498586)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 663012)
+[PASS] test_staleFeed_reverts() (gas: 405780)
+[PASS] test_withdrawReturnsAssets() (gas: 458450)
+[PASS] test_zeroPrice_reverts() (gas: 26219)
+Suite result: ok. 19 passed; 0 failed; 0 skipped; finished in 1.01s (1.06s CPU time)
+
+Ran 5 test suites in 1.24s (3.24s CPU time): 45 tests passed, 0 failed, 0 skipped (45 total tests)
+
+EXIT: 0

@@ -36,3 +36,9 @@ interface ICLGauge {
 interface ICLPool {
     function slot0() external view returns (uint160 sqrtPriceX96, int24 tick, uint16, uint16, uint16, bool);
 }
+
+/// Verified CL router path format: token, int24 tickSpacing, token. Not a Uniswap fee tier.
+interface ICLSwapRouter {
+    struct ExactInputParams { bytes path; address recipient; uint256 deadline; uint256 amountIn; uint256 amountOutMinimum; }
+    function exactInput(ExactInputParams calldata params) external payable returns (uint256);
+}

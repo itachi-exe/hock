@@ -52,3 +52,31 @@ Honest gaps:
 - Router has no repay-and-withdraw path yet; users exit via Morpho directly then `vault.withdraw`.
 - Gauge `stakedLiquidity` was 0 at the fork block, so reward-per-day figures in tests are inflated (our deposit is the only staked liquidity).
 - Rewards accrued before an unstake are held by the adapter until the next `getReward`, which forwards all of them.
+
+## Phase 2b checkpoint (2026-11-04): partial, authenticated Pyth integration blocked
+
+The queue item remains pending. Nothing was broadcast, deployed or pushed, and no wallet or credential file was read. The prior phase 2a gaps above describe the historical baseline, not the checkpoint's new harvest implementation.
+
+Implemented locally:
+- Payable router and vault deposit overloads accept `bytes[] priceUpdate`. The oracle updates the Pyth adapter before valuation and drift checks; the adapter obtains `getUpdateFee` and forwards exactly that fee to `updatePriceFeeds`. Wrong fees and value with an empty update revert atomically, rather than retaining or refunding currency. Morpho's `price()` remains a view with the same selector; stale, zero and future-dated feeds still fail closed.
+- The router requires the market's oracle to match the vault's oracle, so updating one feed cannot leave Morpho checking a different oracle.
+- `MezoSwapAdapter` executes the deployed tick-spacing-based CLSwapRouter's `exactInput` routes: MEZO -> MUSD at spacing 50, and MEZO -> MUSD -> BTC with spacing 50 then 10. Invalid routes, zero amounts/minima, incomplete input consumption, false token returns and short actual receipts revert.
+- Unbounded `harvest()` was removed. Only the deploying owner is the keeper allowed to choose both strictly positive per-leg minima. The vault enforces actual receipt deltas on both legs, not a swapper's claimed return or existing idle balances. Drift is checked before swapping and again before compounding.
+
+Parent verification after the specialist stopped:
+- `/opt/hermes/.foundry/bin/forge test --no-match-contract '.*ForkTest' -v`: 32 passed, 0 failed. All 15 original phase 1 tests remained present and passing.
+- `/opt/hermes/.foundry/bin/forge test --fork-url https://rpc.test.mezo.org --fork-block-number 16553087 -vv`: 45 passed, 0 failed, 0 skipped. This is 32 local tests plus 9 original fork tests and 4 new swap/harvest fork tests, not 45 independent live-chain executions. All 24 original combined baseline tests remained green.
+- Parent initially reproduced 3 failures in the new fork assertions. The chosen public test address already held 0.1 MUSD at this block; assertions now compare actual deltas or preserved pre-existing balances instead of assuming zero. Canonical MUSD and the pool/router code were not replaced to hide that failure.
+- Real deployed router output on the fork: 1 MEZO -> 944537522666152112 MUSD wei, and 1 MEZO -> 11982702665777 BTC wei. Real NPM/gauge harvest compounded a 99189391244091073 MEZO-wei reward, increasing liquidity by 155462898532118. Both routes enforce impossible output minima with atomic rollback.
+- `git diff --check` and the added-line static security scan passed. The parent reviewed all changed contracts, new files and affected callers. ABI inspection confirmed `harvest(uint256,uint256,bytes[])`, paid deposit/router overloads, and unchanged Morpho `price()`.
+
+Integration caveats and remaining gate:
+- BTC and MEZO are chain precompiles that the local EVM cannot execute. Swap fork fixtures replace only their code and restore the original pool token balances from read-only RPC evidence. Canonical MUSD, router, pools, NPM and gauge are real fork state. The harvest fork test uses mock pricing feeds. Original fork pricing seams and unit `MockPyth` do not prove authenticated Pyth updates.
+- Main Hermes, beta Hermes and Pyth Benchmarks returned HTTP 401. Official Pyth upgrade documentation confirms that every Hermes user needs an API key after the August 26, 2026 upgrade. Registering for an account or handling a new credential is outside this run's approval. No genuine Hermes payload could be fetched, so no authenticated current deployed Pyth update passed. Public historical explorer calldata also reverted on the current verifier (`0x2acbe915`); it is not a substitute for the required current payload.
+- Only itachi can authorize/provide Pyth API access. Resume by fetching and retaining a genuine MUSD/USD update for `0x0617a9b725011a126a2b9fd53563f4236501f32cf76d877644b943394606c6de`, its exact request URL, publish time, payload hash and fork timestamp, then execute it against the unmocked deployed Pyth verifier before deposit/borrow. Keep the staleness check strict. Do not mark phase 2b complete until this gate passes.
+
+Evidence was preserved in `hock/evidence/phase2b-20261104/` (55 source artifacts plus a SHA-256 manifest), so it survives scratch pruning. Full discovery work remains at `/opt/hermes/.hermes/cache/scratch/hock-phase2b-20261104/`. The retained set includes paired RED/GREEN logs, `parent-local.log`, `parent-real-swap-fork-red.log`, `parent-full-fork-green.log`, `baseline-preservation.json`, `parent-review.json`, pool snapshots and HTTP 401 headers/bodies.
+
+Specialist failure: session `20261104_004119_17bb1f`, transcript `/opt/hermes/.hermes/cache/delegation/live/deleg_5e897497/task-0.log`. Recorded usage lists 121 calls on `gpt-6.1-sol` through `custom:agentrouter`; the completion attempt failed on the permitted Gemini fallback with HTTP 429 daily quota exhaustion. The child did not return a valid completion or update this log. Dollar cost is unavailable (`cost_status=unknown`), not zero. The parent recovered and independently tested the files; no blocked model was retried and Anthropic remained paused.
+
+Skills loaded: task-model-routing, server-access, hermes-agent, ponytail, test-driven-development, systematic-debugging, evm-chain-onboarding, hackathon-winning, requesting-code-review, ponytail-review, agent-cost-and-token-accounting.

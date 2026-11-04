@@ -1,0 +1,32 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        5899         483          22        1964        2041
+Swap:           8191        6737        1454
+Compiling 1 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.41s
+Compiler run successful!
+
+Ran 1 test for test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[FAIL: vm.getCode: no matching artifact found; counterexample: calldata=0x423cf9c30000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_swapExecutesConfiguredTickSpacingRoute(bool) (runs: 0, μ: 0, ~: 0)
+Traces:
+  [13216] MezoSwapAdapterTest::testFuzz_swapExecutesConfiguredTickSpacingRoute(false)
+    ├─ [0] VM::getCode("MezoSwapAdapter.sol:MezoSwapAdapter") [staticcall]
+    │   └─ ← [Revert] vm.getCode: no matching artifact found
+    └─ ← [Revert] vm.getCode: no matching artifact found
+
+Backtrace:
+  at VM.getCode
+  at MezoSwapAdapterTest.testFuzz_swapExecutesConfiguredTickSpacingRoute
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 12.98ms (10.62ms CPU time)
+
+Ran 1 test suite in 37.04ms (12.98ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/MezoSwapAdapter.t.sol:MezoSwapAdapterTest
+[FAIL: vm.getCode: no matching artifact found; counterexample: calldata=0x423cf9c30000000000000000000000000000000000000000000000000000000000000000 args=[false]] testFuzz_swapExecutesConfiguredTickSpacingRoute(bool) (runs: 0, μ: 0, ~: 0)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+
+Tip: Run `forge test --rerun` to retry only the 1 failed test
+
+Fuzz seed: 0x1 (use `--fuzz-seed` to reproduce)

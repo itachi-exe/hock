@@ -1,0 +1,31 @@
+               total        used        free      shared  buff/cache   available
+Mem:            7941        6027         291          34        2026        1913
+Swap:           8191        6675        1516
+Compiling 3 files with Solc 0.8.28
+Solc 0.8.28 finished in 1.61s
+Compiler run successful!
+
+Ran 15 tests for test/Hock.t.sol:HockTest
+[PASS] test_deposit_mintsSharesAtFairValue() (gas: 450060)
+[PASS] test_harvest_compoundsAndPaysFee() (gas: 796940)
+[PASS] test_lltvConstantIsTestnetValue() (gas: 266)
+[PASS] test_manipulatedSpot_blocksDeposit() (gas: 589760)
+[PASS] test_manipulatedSpot_blocksHarvest() (gas: 632853)
+[PASS] test_musdDepeg_isPriced_notAssumedOneDollar() (gas: 518231)
+[PASS] test_oracle_price_matches_fair_value_per_share() (gas: 566855)
+[PASS] test_priceShock_makesPositionLiquidatable() (gas: 565879)
+[PASS] test_priceShock_smallDipStaysHealthy() (gas: 505707)
+[PASS] test_secondDepositorGetsProportionalShares() (gas: 682832)
+[PASS] test_spotCrashWithoutFeedMove_doesNotLiquidate() (gas: 498428)
+[PASS] test_spotManipulation_cannotInflateCollateral() (gas: 662645)
+[PASS] test_staleFeed_reverts() (gas: 405624)
+[PASS] test_withdrawReturnsAssets() (gas: 458354)
+[PASS] test_zeroPrice_reverts() (gas: 26169)
+Suite result: ok. 15 passed; 0 failed; 0 skipped; finished in 35.49ms (30.14ms CPU time)
+
+Ran 2 tests for test/HockPullUpdate.t.sol:HockPullUpdateTest
+[PASS] test_routerPullUpdateRunsBeforeStaleValuationAndBorrow() (gas: 727114)
+[PASS] test_updateOverpaymentIsRejectedAtomically() (gas: 46457)
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 6.14ms (3.16ms CPU time)
+
+Ran 2 test suites in 46.23ms (41.63ms CPU time): 17 tests passed, 0 failed, 0 skipped (17 total tests)
