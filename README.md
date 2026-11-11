@@ -5,6 +5,11 @@ Borrow MUSD against your share of a BTC/MUSD liquidity position on Mezo.
 Hock pools BTC and MUSD into a staked Mezo concentrated-liquidity position and gives depositors ERC-20 shares. Those shares are accepted as collateral in a Morpho market, so the principal sitting inside an LP position can back a MUSD loan without being unwound.
 
 - **Live app:** https://hock-preview.vercel.app (simulation at `/app/`, real Mezo Testnet at `/app/testnet/`)
+- **Pitch video (2:07):** https://github.com/itachi-exe/hock/releases/download/submission-v1/hock-pitch.mp4
+- **Deck (8 slides):** https://hock-preview.vercel.app/deck.pdf
+
+![Hock on Mezo Testnet](pitch/shots/3-borrowed.png)
+
 - **Network:** Mezo Testnet, chain id `31611`, RPC `https://rpc.test.mezo.org`
 - **Status:** testnet only. Unaudited. Nothing here is deployed to mainnet.
 

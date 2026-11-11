@@ -1,0 +1,21 @@
+{
+  "app": "https://hock-preview.vercel.app/app/testnet/",
+  "chainId": 31611,
+  "flows": [
+    "deposit",
+    "lock",
+    "borrow",
+    "repay",
+    "release",
+    "withdraw"
+  ],
+  "transactionHashes": [
+    "0x0096cc4951177df381ae6b8697d4ca7c6db8b2f10399c67e18c8b5ac47b28945",
+    "0x092f4c74f0c1c1a435653d423778116853c7deb166cc7a21a27fd620fabb7290",
+    "0x538288a2569b1801f1db1c97058ca9c609bd257b7c1e848632fa6094eba96dce",
+    "0x5195a1b46db9cc8f2d8a6c579ae1e8842285f78630d3362344718efb737461e4",
+    "0xbf48497c9adcccf0616b720674e87fbbc12d3daacb2e63d509f94acdd35924a4",
+    "0xf5d2806b8847a28dd8ec16b7e0e7c02b5fb3a6010ea356bd15eb6bbaadf3f800"
+  ],
+  "scope": "Real signing wallet through deployed app. Own test wallet only. Existing token approvals."
+}
