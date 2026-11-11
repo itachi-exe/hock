@@ -19,3 +19,10 @@ docs/
 .env.*
 !.env.example
 .env*
+
+# Internal build notes and design references (not part of the submission)
+web/evidence/
+web/DEPLOYMENT.json
+web/VERIFICATION.md
+web/design.md
+web/vercel-static.json

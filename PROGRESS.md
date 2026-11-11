@@ -80,3 +80,36 @@ Evidence was preserved in `hock/evidence/phase2b-20261104/` (55 source artifacts
 Specialist failure: session `20261104_004119_17bb1f`, transcript `/opt/hermes/.hermes/cache/delegation/live/deleg_5e897497/task-0.log`. Recorded usage lists 121 calls on `gpt-6.1-sol` through `custom:agentrouter`; the completion attempt failed on the permitted Gemini fallback with HTTP 429 daily quota exhaustion. The child did not return a valid completion or update this log. Dollar cost is unavailable (`cost_status=unknown`), not zero. The parent recovered and independently tested the files; no blocked model was retried and Anthropic remained paused.
 
 Skills loaded: task-model-routing, server-access, hermes-agent, ponytail, test-driven-development, systematic-debugging, evm-chain-onboarding, hackathon-winning, requesting-code-review, ponytail-review, agent-cost-and-token-accounting.
+
+
+## Reference-led correction (2026-11-06)
+
+Replaced the rejected split hero with the measured Ithaca Protocol reference composition, selected from dark.design. Full-height central scene, outlined HOCK wordmark, original wireframe liquidity loop, lower centered headline, pill action, numbered mechanism rows and spacious mission. Shared language carries into /app/. Updated the SAME authorized preview alias, https://hock-preview.vercel.app, deployment dpl_FkVmeKc259XaevtnBa2CpHK9GWa8. No push, contract deployment, new key, wallet action or live-lending claim.
+
+Verified fresh production build, 26 unit tests, 12/12 source checks, ten route/viewport samples and ten interaction checks. Fixed a rotated decorative app pseudo-element causing tablet overflow and reran the suite. Public /, /app/, CSS and font return HTTP200 with bytes matching local SHA-256. A fresh unauthenticated public mobile browser actually rendered both pages, navigated through the CTA and reviewed the default scenario, with no page errors, interception, auth headers or horizontal overflow.
+
+Image-review routes remain quota-exhausted, so artistic approval and pixel-identical fidelity are NOT claimed. Graph remains AUDIT_SCREEN. Real Pyth and funded testnet gates unchanged. Source: web/design.md; verification: web/VERIFICATION.md and web/evidence/reference-rebuild/. Original rejected source preserved in scratch/hock-reference-rebuild/before. Screenshots, reference capture and reports are retained with a manifest outside scratch pruning.
+
+## Owner-requested Vercel review preview (2026-11-06T05:38:32.651848+00:00)
+
+Website deployment explicitly authorized by owner. Built new isolated web/ Next15.5.23 static export with locally served Geist fonts, original Hock monogram/collateral SVG, landing at / and interactive scenario at /app/. Public URL: https://hock-preview.vercel.app. Only static out/ uploaded to newly created Vercel project hock-preview. No GitHub push, contracts deployment, signing, funds, new credentials or account settings changes. No live wallet balances, feed values, APYs or market claims. Hypothetical80% liquidation LTV clearly labelled as a calculator assumption, not a deployed parameter.
+
+Verification: production build clean;26 calculator tests pass;32 contract tests pass offline with2 fork suites skipped (not treated as proof). Local browser checks both routes at320,375,768,1280,1440: zero horizontal overflow, real fonts,44px+ actions, no page/HTTP errors.10 interaction checks pass including edits, keyboard LTV/risk, inline invalid input, review, reset, FAQ, navigation and reduced motion. Screenshots saved. Fixed mobile navigation specificity after real320px overflow.
+
+Public independent HTTP requests return200 for /, /app/, icon and font. Public mobile browser captures initially rendered both screens at320/375 with real styles/fonts. Aggressive uncached repeat navigation triggered Vercel security challenge403/708; a later single headless request still challenged. Full public interaction test is NOT claimed. No WAF bypass or settings change made. Local full interaction test passes. Artistic image review remains pending because available review routes were previously quota-blocked. This is an owner review preview, not a finished/live lending market. Frontend graph intentionally remains AUDIT_SCREEN, with no fabricated art score.
+
+Remaining: genuine Pyth verification, funded testnet execution, final visual review, and wallet/live-market integration only after real contract proofs. Detailed artifacts: web/DEPLOYMENT.json, design.md and scratch/hock-vercel-preview (browser-report.json, public-browser-report.json, public-smoke.json, public-http.json, unit-tests.tap, forge-tests.log, screenshots).
+
+## No-cost oracle decision follow-up, November 6, 2026
+
+LATEST OWNER REDIRECTION: "Just keep building and put mockup we will find the api later". Build a fully interactive MOCKED product now; real oracle/API/funded testnet proof is deferred, not a blocker to the mock build. Keep demo mode and simulated balances/actions clear; no real wallet, transaction hashes, receipts, price freshness or market availability claims. Parent implemented and regression-tested app/mock-market.mjs as a pure in-memory adapter with read/execute methods, fictional MUSD-equivalent balances, deposit/borrow/repay/withdraw,75% illustrative borrowing limit and atomic validation. This is NOT a real LP valuation or onchain market. Integrate this adapter into the actual UI in the scheduled polish run, with coherent states, reset and browser tests. The API can replace the adapter later. No public deployment/push or paid access authorized.
+
+No oracle changes, account operations, API-key use or onchain writes occurred in this check.
+
+## November 6 mock-market integration run
+
+Owner override: the active deliverable is a fictional, no-wallet interactive demo, and API/oracle/funding proof is deferred. Replaced the app's illustrative-only screen with an actual UI over the existing `app/mock-market.mjs` adapter. Kept the landing and Ithaca-led visual language, added a demo disclosure, synthetic wallet/collateral/debt/borrow-capacity summary, deposit/borrow/repay/withdraw actions, input validation, pending/success/error feedback, reset and empty position state. No API, wallet, network request, signature, transaction, or financial claim was added. Updated the local web README to distinguish this build from the existing public preview.
+
+Verification: 28/28 web tests; production static build passed; frontend graph AUDIT_SCREEN verifier 12/12; `git diff --check` clean; Foundry offline contracts 32/32 passed. Real Chromium CDP interaction test completed deposit 1,000, borrow 400, repay 100, withdraw 100, rejected an over-limit borrow, reset all scenario amounts, and found zero horizontal overflow at 320, 375, 768, 1280 and 1440 widths. Screenshots and interaction JSON: `evidence/tonight-20261106/`. Screenshots exist, but vision review returned Gemini free-tier HTTP429; no visual approval is claimed. Artistic review is the remaining local QA gate. Existing public alias is unchanged and serves the earlier version. No push/deployment occurred.
+
+The underlying adapter is mock scenario logic only, not an API substitute proven against production requirements. Pyth authenticated update, funded testnet, real wallet/onchain path, public release authorization and visual approval remain separate, explicitly pending gates.

@@ -5,7 +5,8 @@ import {IERC20, IFeed, IPullFeed, ICL, IOracle} from "./Interfaces.sol";
 import {HockMath} from "./HockMath.sol";
 
 interface IHockVaultView {
-    function tokenId() external view returns (uint256);
+    function idsLength() external view returns (uint256);
+    function ids(uint256) external view returns (uint256);
     function totalSupply() external view returns (uint256);
 }
 
@@ -58,9 +59,9 @@ contract HockOracle is IOracle {
         uint256 fair = fairPrice();
         uint256 a0 = btc.balanceOf(vault);
         uint256 a1 = musd.balanceOf(vault);
-        uint256 id = IHockVaultView(vault).tokenId();
-        if (id != 0) {
-            (uint128 liq, uint256 sA, uint256 sB) = cl.position(id);
+        uint256 n = IHockVaultView(vault).idsLength();
+        for (uint256 i; i < n; i++) {
+            (uint128 liq, uint256 sA, uint256 sB) = cl.position(IHockVaultView(vault).ids(i));
             (uint256 p0, uint256 p1) = HockMath.amounts(liq, HockMath.sqrtWad(fair), sA, sB);
             a0 += p0; a1 += p1;
         }

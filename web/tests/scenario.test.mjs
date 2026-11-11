@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {evaluateScenario,formatAmount,SCENARIO} from '../app/scenario.mjs';
+test('default local scenario calculates debt and headroom',()=>{assert.deepEqual(evaluateScenario('10000',40),{ok:true,value:10000,ltv:40,debt:4000,exampleLimit:8000,headroom:4000,healthFactor:2,highRisk:false})});
+test('limits are inclusive',()=>{assert.equal(evaluateScenario('100',10).ok,true);assert.equal(evaluateScenario('1000000',75).ok,true)});
+test('financial input permits two decimal places and surrounding space',()=>{assert.equal(evaluateScenario(' 1234.56 ',40).ok,true);assert.equal(evaluateScenario('.50',40).ok,false)});
+for(const value of ['', ' ', '0', '-1', '99.99', '1000000.01', 'NaN', 'Infinity', '1e4', '10,000', '1000.123', '<script>', '10000x'])test(`reject invalid collateral: ${JSON.stringify(value)}`,()=>assert.equal(evaluateScenario(value,40).ok,false));
+for(const ltv of [0,9,76,100,NaN,Infinity,40.5])test(`reject invalid LTV: ${ltv}`,()=>assert.equal(evaluateScenario('10000',ltv).ok,false));
+test('risk flags start at 65 percent',()=>{assert.equal(evaluateScenario('10000',64).highRisk,false);assert.equal(evaluateScenario('10000',65).highRisk,true);assert.equal(evaluateScenario('10000',75).headroom,500)});
+test('formatted amount is deterministic',()=>assert.equal(formatAmount(4000),'4,000.00'));
+test('model assumptions are not claimed as deployed parameters',()=>{assert.equal(SCENARIO.exampleLltv,80);assert.ok(SCENARIO.maxLtv<SCENARIO.exampleLltv)});

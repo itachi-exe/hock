@@ -1,0 +1,103 @@
+{
+  "interactions": {
+    "states": [
+      [
+        "deposit",
+        [
+          "24,000.00 MUSD",
+          "1,000.00 MUSD",
+          "0.00 MUSD",
+          "750.00 MUSD"
+        ]
+      ],
+      [
+        "borrow",
+        [
+          "24,400.00 MUSD",
+          "1,000.00 MUSD",
+          "400.00 MUSD",
+          "350.00 MUSD"
+        ]
+      ],
+      [
+        "repay",
+        [
+          "24,300.00 MUSD",
+          "1,000.00 MUSD",
+          "300.00 MUSD",
+          "450.00 MUSD"
+        ]
+      ],
+      [
+        "withdraw",
+        [
+          "24,400.00 MUSD",
+          "900.00 MUSD",
+          "300.00 MUSD",
+          "375.00 MUSD"
+        ]
+      ]
+    ],
+    "error": "Above the demo borrowing limit.",
+    "reset": [
+      "25,000.00 MUSD",
+      "0.00 MUSD",
+      "0.00 MUSD",
+      "0.00 MUSD"
+    ],
+    "disclosure": "Demo only. Balances and rules are fictional and reset on reload. No actual asset amounts, prices, interest, transaction or available lending market are represented.",
+    "overflow": 0
+  },
+  "viewports": [
+    {
+      "width": 320,
+      "overflow": 0,
+      "tabWidths": [
+        53,
+        53,
+        53,
+        53
+      ]
+    },
+    {
+      "width": 375,
+      "overflow": 0,
+      "tabWidths": [
+        67,
+        67,
+        67,
+        67
+      ]
+    },
+    {
+      "width": 768,
+      "overflow": 0,
+      "tabWidths": [
+        158,
+        158,
+        158,
+        158
+      ]
+    },
+    {
+      "width": 1280,
+      "overflow": 0,
+      "tabWidths": [
+        127,
+        127,
+        127,
+        127
+      ]
+    },
+    {
+      "width": 1440,
+      "overflow": 0,
+      "tabWidths": [
+        127,
+        127,
+        127,
+        127
+      ]
+    }
+  ]
+}

@@ -25,7 +25,11 @@ contract HockVault {
     uint256 public constant FEE_BPS = 1000;
     uint256 public immutable maxDriftBps;
     HockOracle public oracle;
-    uint256 public tokenId;
+    uint256[] public ids;
+    uint256 public constant MAX_POSITIONS = 8;
+    function idsLength() external view returns (uint256) { return ids.length; }
+    /// First position id (0 if none). Kept for older readers.
+    function tokenId() external view returns (uint256) { return ids.length == 0 ? 0 : ids[0]; }
     address public owner;
 
     event Deposit(address indexed who, uint256 a0, uint256 a1, uint256 shares);
@@ -33,6 +37,7 @@ contract HockVault {
     event Harvest(uint256 reward, uint256 fee, uint256 compounded);
 
     error Drift();
+    error Full();
     error Slippage();
     error NotOwner();
     error NotKeeper();
@@ -58,26 +63,33 @@ contract HockVault {
     }
 
     function deposit(uint256 a0, uint256 a1, uint256 minShares) external returns (uint256 shares) {
-        return _deposit(a0, a1, minShares);
+        return _deposit(a0, a1, minShares, msg.sender);
+    }
+
+    /// Shares go to the caller, any unused tokens go straight to `refundTo` (used by the router so it never has to read balances).
+    function depositWithRefund(uint256 a0, uint256 a1, uint256 minShares, address refundTo) external returns (uint256 shares) {
+        return _deposit(a0, a1, minShares, refundTo);
     }
 
     function deposit(uint256 a0, uint256 a1, uint256 minShares, bytes[] calldata priceUpdate) external payable returns (uint256 shares) {
         oracle.updatePriceFeeds{value: msg.value}(priceUpdate);
-        return _deposit(a0, a1, minShares);
+        return _deposit(a0, a1, minShares, msg.sender);
     }
 
-    function _deposit(uint256 a0, uint256 a1, uint256 minShares) internal returns (uint256 shares) {
+    function _deposit(uint256 a0, uint256 a1, uint256 minShares, address refundTo) internal returns (uint256 shares) {
         _checkDrift();
         uint256 before_ = totalSupply == 0 ? 0 : oracle.totalValue();
         btc.transferFrom(msg.sender, address(this), a0);
         musd.transferFrom(msg.sender, address(this), a1);
         uint256 u0; uint256 u1;
         btc.approve(address(cl), a0); musd.approve(address(cl), a1);
-        if (tokenId == 0) (tokenId, u0, u1) = cl.mintStaked(a0, a1);
-        else (u0, u1) = cl.increaseStaked(tokenId, a0, a1);
+        if (ids.length >= MAX_POSITIONS) revert Full();
+        uint256 nid;
+        (nid, u0, u1) = cl.mintStaked(a0, a1);
+        ids.push(nid);
         // unused part goes back to the depositor
-        if (a0 > u0) btc.transfer(msg.sender, a0 - u0);
-        if (a1 > u1) musd.transfer(msg.sender, a1 - u1);
+        if (a0 > u0) btc.transfer(refundTo, a0 - u0);
+        if (a1 > u1) musd.transfer(refundTo, a1 - u1);
         uint256 added = oracle.valueOf(u0, u1);
         shares = totalSupply == 0 ? added : added * totalSupply / before_;
         if (shares < minShares) revert Slippage();
@@ -87,9 +99,19 @@ contract HockVault {
 
     function withdraw(uint256 shares) external returns (uint256 o0, uint256 o1) {
         uint256 s = totalSupply;
-        (uint128 liq,,) = cl.position(tokenId);
         _burn(msg.sender, shares);
-        (uint256 d0, uint256 d1) = cl.decreaseStaked(tokenId, uint128(uint256(liq) * shares / s));
+        uint256 d0; uint256 d1;
+        // walk back to front so emptied positions can be dropped (swap and pop) without skipping any
+        for (uint256 i = ids.length; i > 0; i--) {
+            uint256 id = ids[i - 1];
+            (uint128 liq,,) = cl.position(id);
+            uint128 part = uint128(uint256(liq) * shares / s);
+            if (part > 0) {
+                (uint256 x0, uint256 x1) = cl.decreaseStaked(id, part);
+                d0 += x0; d1 += x1;
+            }
+            if (liq == part) { ids[i - 1] = ids[ids.length - 1]; ids.pop(); }
+        }
         // idle balances (compound leftovers) are shared too; d0/d1 already sit in the vault
         o0 = (btc.balanceOf(address(this)) - d0) * shares / s + d0;
         o1 = (musd.balanceOf(address(this)) - d1) * shares / s + d1;
@@ -103,7 +125,7 @@ contract HockVault {
         if (minBtc == 0 || minMusd == 0) revert Slippage();
         oracle.updatePriceFeeds{value: msg.value}(priceUpdate);
         _checkDrift();
-        reward = cl.getReward(tokenId);
+        for (uint256 i; i < ids.length; i++) reward += cl.getReward(ids[i]);
         if (reward == 0) return 0;
         uint256 fee = reward * FEE_BPS / 1e4;
         mezo.transfer(treasury, fee);
@@ -115,7 +137,7 @@ contract HockVault {
         uint256 b0 = btc.balanceOf(address(this)); uint256 b1 = musd.balanceOf(address(this));
         btc.approve(address(cl), b0); musd.approve(address(cl), b1);
         _checkDrift();
-        cl.increaseStaked(tokenId, b0, b1);
+        // swapped proceeds stay idle in the vault and are counted by the oracle and shared on withdraw
         emit Harvest(reward, fee, g0 + g1);
     }
 

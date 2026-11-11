@@ -1,0 +1,159 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Hock: pitch deck</title>
+<style>
+@font-face{font-family:Geist;src:url('../web/public/fonts/geist.woff2') format('woff2');font-weight:100 900}
+@font-face{font-family:'Geist Mono';src:url('../web/public/fonts/geist-mono.woff2') format('woff2');font-weight:100 900}
+@page{size:1920px 1080px;margin:0}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#080b0a;color:#f5f5f3;font-family:Geist,system-ui,sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.s{width:1920px;height:1080px;padding:96px 112px;position:relative;overflow:hidden;page-break-after:always;display:flex;flex-direction:column;background:radial-gradient(1200px 700px at 85% -10%,rgba(108,192,156,.10),transparent 60%),#080b0a}
+.eb{font-family:'Geist Mono',monospace;font-size:20px;letter-spacing:.14em;text-transform:uppercase;color:#6cc09c;display:flex;align-items:center;gap:14px}
+.eb i{width:8px;height:8px;border-radius:50%;background:#6cc09c;display:block}
+h1{font-size:112px;line-height:1.02;font-weight:500;letter-spacing:-.035em;margin-top:36px}
+h2{font-size:72px;line-height:1.06;font-weight:500;letter-spacing:-.03em;margin-top:28px;max-width:1500px}
+h1 span,h2 span{color:#969e98}
+p.lead{font-size:34px;line-height:1.4;color:#c7c8c4;margin-top:32px;max-width:1150px}
+.ft{position:absolute;left:112px;right:112px;bottom:56px;display:flex;justify-content:space-between;font-family:'Geist Mono',monospace;font-size:18px;color:#969e98;letter-spacing:.06em}
+.grid{display:grid;gap:28px;margin-top:64px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+.c{background:#0d1210;border:1px solid rgba(255,255,255,.10);border-radius:16px;padding:36px}
+.c h3{font-size:32px;font-weight:500;letter-spacing:-.01em}
+.c p{font-size:24px;line-height:1.45;color:#c7c8c4;margin-top:14px}
+.c .k{font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.12em;text-transform:uppercase;color:#969e98}
+.c .v{font-size:76px;font-weight:500;letter-spacing:-.03em;margin-top:10px}
+.c .v small{font-size:28px;color:#969e98;letter-spacing:0}
+.flow{display:flex;align-items:stretch;gap:0;margin-top:72px}
+.flow .c{flex:1}.flow .ar{width:72px;display:flex;align-items:center;justify-content:center}
+.flow .n{font-family:'Geist Mono',monospace;font-size:18px;color:#6cc09c;letter-spacing:.12em}
+.flow h3{margin-top:14px}
+.shot{border:1px solid rgba(255,255,255,.14);border-radius:14px;overflow:hidden;background:#0d1210}
+.shot img{display:block;width:100%}
+.cap{font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.1em;text-transform:uppercase;color:#969e98;margin-top:16px}
+.row{display:flex;gap:64px;align-items:center;flex:1}
+.mono{font-family:'Geist Mono',monospace}
+table{border-collapse:collapse;width:100%;margin-top:8px}
+td{font-size:22px;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.08);color:#c7c8c4}
+td:last-child{font-family:'Geist Mono',monospace;font-size:19px;text-align:right;color:#f5f5f3}
+.tag{display:inline-block;font-family:'Geist Mono',monospace;font-size:18px;letter-spacing:.1em;text-transform:uppercase;border:1px solid rgba(108,192,156,.5);color:#6cc09c;border-radius:999px;padding:10px 20px;margin-top:40px}
+ul{list-style:none;margin-top:14px}li{font-size:24px;line-height:1.4;color:#c7c8c4;padding:9px 0 9px 26px;position:relative}
+li:before{content:"";position:absolute;left:0;top:22px;width:10px;height:2px;background:#6cc09c}
+</style></head><body>
+
+<section class="s">
+  <div class="eb"><i></i>LP-backed credit on Mezo</div>
+  <div class="row">
+    <div style="flex:1.05">
+      <h1>Hock<br><span>your liquidity.</span></h1>
+      <p class="lead">Borrow MUSD against your share of a BTC/MUSD liquidity position, without unwinding it.</p>
+      <div class="tag">Live on Mezo Testnet</div>
+    </div>
+    <div style="flex:1"><div class="shot"><img src="shots/3-borrowed.png"></div><div class="cap">The real app, after a deposit and borrow on chain 31611</div></div>
+  </div>
+  <div class="ft"><span>HOCK</span><span>hock-preview.vercel.app</span><span>01 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>The problem</div>
+  <h2>Liquidity providers have capital. <span>They cannot borrow against it.</span></h2>
+  <div class="grid g3">
+    <div class="c"><div class="k">Today</div><h3 style="margin-top:14px">Principal is parked</h3><p>BTC and MUSD inside a concentrated-liquidity position earn fees and rewards, and do nothing else.</p></div>
+    <div class="c"><div class="k">The cost</div><h3 style="margin-top:14px">Credit means exiting</h3><p>A staked position is an NFT in a gauge. A lending market cannot take it, so an LP who needs MUSD has to pull liquidity.</p></div>
+    <div class="c"><div class="k">Hock</div><h3 style="margin-top:14px">Shares a market accepts</h3><p>One pooled position, split into ERC-20 shares that Morpho on Mezo takes as collateral.</p></div>
+  </div>
+  <p class="lead" style="font-size:26px;color:#969e98">Who it is for: Mezo BTC/MUSD liquidity providers who want MUSD credit. Demand is a hypothesis. No outside user has used Hock yet.</p>
+  <div class="ft"><span>HOCK</span><span></span><span>02 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>How it works</div>
+  <h2>Deposit once. <span>Your position becomes collateral.</span></h2>
+  <div class="flow">
+    <div class="c"><div class="n">01 DEPOSIT</div><h3>BTC + MUSD</h3><p>HockVault adds liquidity on a fixed wide range and stakes it in the Mezo gauge.</p></div>
+    <div class="ar"><svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="#6cc09c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34M27 4l9 8-9 8"/></svg></div>
+    <div class="c"><div class="n">02 SHARES</div><h3>HOCK tokens</h3><p>Depositors get ERC-20 shares of the pooled position. Unused tokens are refunded exactly.</p></div>
+    <div class="ar"><svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="#6cc09c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34M27 4l9 8-9 8"/></svg></div>
+    <div class="c"><div class="n">03 LOCK</div><h3>Morpho market</h3><p>Shares are posted as collateral in a MUSD market at 77% LLTV.</p></div>
+    <div class="ar"><svg width="40" height="24" viewBox="0 0 40 24" fill="none" stroke="#6cc09c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h34M27 4l9 8-9 8"/></svg></div>
+    <div class="c"><div class="n">04 BORROW</div><h3>MUSD out</h3><p>Repay any time. Exit returns the BTC and MUSD.</p></div>
+  </div>
+  <p class="lead" style="font-size:26px;color:#969e98">Built on Mezo's own pieces: canonical MUSD, Mezo Pools, the CL gauge and the Mezo Morpho deployment.</p>
+  <div class="ft"><span>HOCK</span><span></span><span>03 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>The product</div>
+  <h2>Three actions. <span>Borrow, repay, exit.</span></h2>
+  <div class="grid g3" style="margin-top:48px">
+    <div><div class="shot"><img src="shots/2-amount.png"></div><div class="cap">Type an amount, pick a risk level</div></div>
+    <div><div class="shot"><img src="shots/4-repay.png"></div><div class="cap">Repay in full, no dust left</div></div>
+    <div><div class="shot"><img src="shots/7-exited.png"></div><div class="cap">Withdraw everything</div></div>
+  </div>
+  <p class="lead" style="font-size:26px;color:#969e98">Real screens from the testnet page. A simulation mode runs the same flows with no wallet, for anyone without test funds.</p>
+  <div class="ft"><span>HOCK</span><span></span><span>04 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>Safety</div>
+  <h2>Priced by feeds, <span>never by the pool's spot price.</span></h2>
+  <div class="grid g2">
+    <div class="c"><h3>What the oracle does</h3><ul>
+      <li>Share value = BTC/USD divided by MUSD/USD. MUSD is never assumed to be one dollar.</li>
+      <li>A zero, future-dated or 24-hour-old price reverts the valuation.</li>
+      <li>Deposits and harvests revert if spot drifts more than 5% from the fair price.</li></ul></div>
+    <div class="c"><h3>What we disclose</h3><ul>
+      <li>On testnet the MUSD/USD price is our own labelled stand-in feed, because Mezo's testnet Pyth feed is stale.</li>
+      <li>No TWAP check yet. Owner is keeper and treasury, with no timelock.</li>
+      <li>Collateral is an LP position, so it carries impermanent loss. Not audited.</li></ul></div>
+  </div>
+  <div class="ft"><span>HOCK</span><span></span><span>05 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>Proof</div>
+  <h2>It runs on Mezo Testnet today.</h2>
+  <div class="grid g4" style="margin-top:48px">
+    <div class="c"><div class="k">Contracts verified</div><div class="v">7 <small>of 7</small></div></div>
+    <div class="c"><div class="k">Full cycle via the UI</div><div class="v">9 <small>transactions</small></div></div>
+    <div class="c"><div class="k">Contract tests</div><div class="v">32 <small>passing</small></div></div>
+    <div class="c"><div class="k">App unit tests</div><div class="v">74 <small>passing</small></div></div>
+  </div>
+  <div class="c" style="margin-top:28px;padding:24px 36px"><table>
+    <tr><td>HockVault</td><td>0x5600BDF9c5d6163D73b12e1312f708Cd8916E0c4</td></tr>
+    <tr><td>HockOracle</td><td>0x6691C934eD714E8403e89c5f0Be83bdBD964a6c9</td></tr>
+    <tr><td>MezoCLAdapter</td><td>0xF9Bd22C3593d5557f63d77D9642290A82fba09B5</td></tr>
+    <tr><td>Morpho market id</td><td>0x673871dad81694407421df4e1b333baf8a4d7b34a09c8b655f9259ac37c8f5cf</td></tr>
+    <tr><td style="border:0">Deposit transaction</td><td style="border:0">0x3267a26660437964ba56c874e6ddebf5b6aca5dc6173e0220bcc588a97159a52</td></tr>
+  </table></div>
+  <p class="lead" style="font-size:24px;color:#969e98;margin-top:24px">Deposit, lock, borrow, repay, release and withdraw were signed by our own wallet through the app. Every hash is in the README.</p>
+  <div class="ft"><span>HOCK</span><span>explorer.test.mezo.org</span><span>06 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>Model</div>
+  <h2>The fee follows real rewards.</h2>
+  <div class="grid g3">
+    <div class="c"><div class="k">Protocol fee</div><div class="v">10%</div><p>of harvested MEZO gauge rewards goes to the treasury.</p></div>
+    <div class="c"><div class="k">Depositors keep</div><div class="v">90%</div><p>swapped to BTC and MUSD and held by the vault for shareholders.</p></div>
+    <div class="c"><div class="k">Other fees</div><div class="v">0</div><p>No deposit, withdraw or borrow fee. Borrow interest goes to Morpho lenders.</p></div>
+  </div>
+  <p class="lead" style="font-size:26px;color:#969e98">No revenue yet. The fee is in the contract (FEE_BPS = 1000) and only earns when rewards are harvested.</p>
+  <div class="ft"><span>HOCK</span><span></span><span>07 / 08</span></div>
+</section>
+
+<section class="s">
+  <div class="eb"><i></i>What is next</div>
+  <h2>Honest gaps, <span>in the order we will close them.</span></h2>
+  <div class="grid g2">
+    <div class="c"><h3>Still open</h3><ul>
+      <li>Swap the stand-in MUSD feed for a live one.</li>
+      <li>One-click deposit and borrow. The router needs about 9M of a 10M gas block, so the app sends separate steps.</li>
+      <li>Put the Vault and Lend pages on chain. Today only Borrow is.</li>
+      <li>Security review, TWAP guard, a real liquidation, outside users.</li></ul></div>
+    <div class="c"><h3>See it</h3><table>
+      <tr><td>App</td><td>hock-preview.vercel.app</td></tr>
+      <tr><td>Testnet page</td><td>/app/testnet/</td></tr>
+      <tr><td>Network</td><td>Mezo Testnet, 31611</td></tr>
+      <tr><td style="border:0">Track</td><td style="border:0">DeFi</td></tr></table></div>
+  </div>
+  <div class="ft"><span>HOCK</span><span>Testnet only. Not audited. No mainnet deployment.</span><span>08 / 08</span></div>
+</section>
+</body></html>

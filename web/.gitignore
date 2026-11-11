@@ -1,0 +1,6 @@
+node_modules/
+.next/
+out/
+.vercel/
+*.log
+.frontend_build_state.json

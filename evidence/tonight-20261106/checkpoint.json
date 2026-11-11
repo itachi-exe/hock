@@ -1,0 +1,36 @@
+{
+  "task": "Hock interactive fictional demo integration",
+  "date": "2026-11-06",
+  "changed_files": [
+    "web/app/app/page.jsx",
+    "web/app/protocol.css",
+    "web/README.md",
+    "PROGRESS.md",
+    "evidence/tonight-20261106/browser-interactions.json",
+    "evidence/tonight-20261106/app-desktop.png",
+    "evidence/tonight-20261106/app-phone.png",
+    "evidence/tonight-20261106/checkpoint.json",
+    "evidence/tonight-20261106/report.md"
+  ],
+  "verification": {
+    "web_tests": "28 passed",
+    "production_build": "passed",
+    "frontend_verifier": "12/12 passed",
+    "offline_foundry": "32 passed, 0 failed, 0 skipped",
+    "diff_check": "clean",
+    "chromium_interactions": "deposit, borrow, repay, withdraw, over-limit error, reset all verified",
+    "viewport_overflow": "0 at 320, 375, 768, 1280, 1440"
+  },
+  "process_handles": {
+    "local_static_server": "proc_d5a9551b98ea, stopped and verified",
+    "isolated_chromium_cdp": "proc_a87918f5fb60, stopped and verified",
+    "occupied_port_4173_server": "proc_cdb9fe7a0b96 exited on bind conflict, no process was killed"
+  },
+  "next_step": "Mock demo implementation and local verification are complete. Artistic review remains pending until an approved image review route is available. Any public update requires explicit deployment approval.",
+  "blockers": [
+    "Vision review quota returned Gemini HTTP429, screenshots saved but artistic approval is pending.",
+    "Existing public preview was intentionally not redeployed and serves the earlier app.",
+    "Real Pyth, funded testnet and live lending remain deferred, outside the mock deliverable."
+  ],
+  "claims_not_made": ["No live API or market", "No wallet or real transaction", "No public deployment or push", "No visual approval"]
+}
