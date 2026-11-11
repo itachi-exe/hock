@@ -74,3 +74,20 @@ Morpho market id: 0x673871dad81694407421df4e1b333baf8a4d7b34a09c8b655f9259ac37c8
 ## Yours to fill
 
 Team name and members, contact handle, and anything the form asks about eligibility. I did not guess these.
+
+## Additional form fields
+
+### TL;DR
+Borrow canonical MUSD against ERC-20 shares of a staked BTC/MUSD liquidity position on Mezo, without unwinding the position.
+
+### Target group
+Mezo BTC/MUSD liquidity providers who want MUSD credit while keeping liquidity staked.
+
+### How it works
+Deposit BTC and MUSD into HockVault. The adapter adds and stakes concentrated liquidity. Supply the resulting vault shares as Morpho collateral, then borrow MUSD. Repay by debt shares, release collateral, and redeem the vault shares to exit.
+
+### Status and readiness
+Testnet MVP, with the borrow, repay and exit flow exercised through the deployed app. Not production ready or audited. Vault, Lend and Market remain simulation-only. The MUSD/USD testnet price is a labelled owner-updated stand-in feed.
+
+### Updates in this wave
+Built and deployed HockVault, the CL adapter, oracle, router, swap adapter and feeds on Mezo Testnet. Verified all seven contracts. Created a real Morpho market with canonical MUSD. Delivered the web app, then exercised deposit, borrow, repay and exit through the deployed URL. Added a public repository, an eight-slide deck and a 2:07 narrated pitch.
